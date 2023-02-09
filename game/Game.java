@@ -38,21 +38,21 @@ public class Game {
      * Constructor to set up the game.
      */
     public Game() {
-        Room[] rooms = new Room[4];
-        for (int i = 0; i < rooms.length; i++)
-            rooms[i] = new Room("a room");
-        rooms[0].setNorth(rooms[1]);
-        rooms[1].setSouth(rooms[0]);
-        rooms[1].setEast(rooms[2]);
-        rooms[2].setWest(rooms[1]);
-        rooms[2].setSouth(rooms[3]);
-        rooms[3].setNorth(rooms[2]);
-        rooms[3].setWest(rooms[0]);
-        rooms[0].setEast(rooms[3]);
-        rooms[0].setAbove(rooms[4]);
-        rooms[0].setBelow(rooms[5]);
-        rooms[4].setBelow(rooms[0]);
-        rooms[5].setAbove(rooms[0]);
+        Room[] rooms = new Room[5];
+        for (int i = 0; i < rooms.length; i++) {
+            rooms[i] = new Room("a room");        	
+        }	
+        for (int i = 0; i < rooms.length; i++) {
+        	if (i+1 < rooms.length) {
+        		rooms[i].setDirection("north", rooms[i+1]);
+        	} else if (i+2 <= rooms.length) {
+        		rooms[i].setDirection("south", rooms[i-1]);
+        	} else if (i-1 >= rooms.length) {
+        		rooms[i].setDirection("east", rooms[i+2]);
+        	} else if (i+2 >= rooms.length) {
+        		rooms[i].setDirection("west", rooms[i-2]);
+        	}
+        }
         over = false;
         currentRoom = rooms[0];
     }
