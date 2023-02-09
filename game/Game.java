@@ -34,11 +34,13 @@ public class Game {
      */
     public Room getCurrentRoom() { return currentRoom; }
     
+    
+    
     /**
      * Constructor to set up the game.
      */
     public Game() {
-        Room[] rooms = new Room[4];
+        Room[] rooms = new Room[6];
         for (int i = 0; i < rooms.length; i++)
             rooms[i] = new Room("a room");
         rooms[0].setNorth(rooms[1]);

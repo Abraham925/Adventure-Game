@@ -19,6 +19,11 @@ public class Parser {
      * For user input from the keyboard.
      */
     private Scanner keyboard;
+    
+    /**
+     * Stores the list of usable commands
+     */
+    private String[] list = new String[6];
 
     /**
      * Plain constructor
@@ -26,6 +31,7 @@ public class Parser {
     public Parser() {
         keyboard = new Scanner(System.in);
     }
+    
 
     /**
      * Let the user make one "turn" at this game.
@@ -41,12 +47,18 @@ public class Parser {
 
         System.out.print("Enter command--> ");
         String command = keyboard.nextLine().toLowerCase();  // user's command
-
-
+        
+        list[0] = "north";
+        list[1] = "east";
+        list[2] = "south";
+        list[3] = "west";
+        list[4] = "leap";
+        list[5] = "groundpound";
+        
         if (command.equals("north") || command.equals("south") 
             || command.equals("west") || command.equals("east") 
         	|| command.equals("leap") || command.equals("groundpound")) {
-            Room nextRoom;   // the room we're moving to
+            Room nextRoom = null;   // the room we're moving to
             if (command.equals("north"))
                 nextRoom = room.getNorth();
             else if (command.equals("south"))
@@ -57,19 +69,34 @@ public class Parser {
                 nextRoom = room.getEast();
             else if (command.equals("leap")) //added
             	nextRoom = room.getAbove();
-            else if (command.equals("groundpound")) //added
+            else if (command.equals("groundpound")) { //added
             	nextRoom = room.getBelow();
-            	if (nextRoom == null)
-            		System.out.println("There is solid ground beneath you");
-            if (nextRoom == null) 
+            	System.out.println("You crashed through the floor.");
+            }
+            if (nextRoom == null) {
                 System.out.println("There is no door in that direction.");
+                nextRoom = room;
+                game.setCurrentRoom(nextRoom);
+            }
             else
                 game.setCurrentRoom(nextRoom);
+            
+            
+        }else if(command.equals("help")) {
+        	help();
         }
         else
             System.out.println("I do not know how to " + command + ".");
 
     }
-
+    
+    public void help() {
+    	for(int i = 0; i<list.length; i+=2) {
+        	if(i+1 == list.length)
+        		System.out.println(list[i]);
+        	else
+        		System.out.println(list[i] + "\t" + list[i+1]);
+    	}
+    }
 
 }
