@@ -44,7 +44,8 @@ public class Parser {
 
 
         if (command.equals("north") || command.equals("south") 
-            || command.equals("west") || command.equals("east")) {
+            || command.equals("west") || command.equals("east") 
+        	|| command.equals("leap") || command.equals("groundpound")) {
             Room nextRoom;   // the room we're moving to
             if (command.equals("north"))
                 nextRoom = room.getNorth();
@@ -52,8 +53,14 @@ public class Parser {
                 nextRoom = room.getSouth();
             else if (command.equals("west"))
                 nextRoom = room.getWest();
-            else
+            else if (command.equals("east"))
                 nextRoom = room.getEast();
+            else if (command.equals("leap")) //added
+            	nextRoom = room.getAbove();
+            else if (command.equals("groundpound")) //added
+            	nextRoom = room.getBelow();
+            	if (nextRoom == null)
+            		System.out.println("There is solid ground beneath you");
             if (nextRoom == null) 
                 System.out.println("There is no door in that direction.");
             else

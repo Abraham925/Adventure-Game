@@ -49,6 +49,10 @@ public class Game {
         rooms[3].setNorth(rooms[2]);
         rooms[3].setWest(rooms[0]);
         rooms[0].setEast(rooms[3]);
+        rooms[0].setAbove(rooms[4]);
+        rooms[0].setBelow(rooms[5]);
+        rooms[4].setBelow(rooms[0]);
+        rooms[5].setAbove(rooms[0]);
         over = false;
         currentRoom = rooms[0];
     }
