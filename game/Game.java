@@ -1,5 +1,7 @@
 package game;
 
+import java.util.HashMap;
+
 /**
  * Game.java
  * 
@@ -40,10 +42,43 @@ public class Game {
      * Constructor to set up the game.
      */
     public Game() {
-        Room[] rooms = new Room[6];
-        for (int i = 0; i < rooms.length; i++)
-            rooms[i] = new Room("a room");
-        rooms[0].setNorth(rooms[1]);
+        //Room[] rooms = new Room[6];
+        Room frontRoom = new Room("Front Room");
+        Room livingRoom = new Room("Living Room");
+        Room kitchen = new Room("Kitchen");
+        Room garage = new Room("Garage");
+        Room secondFloor = new Room("Second Floor");
+        Room bathroom = new Room("Bathroom");
+        Room basement = new Room("Basement");
+        Room bedroomOne = new Room("Bedroom 1st Floor");
+        Room bedroomTwo = new Room("Bedroom 2nd Floor");
+        
+        frontRoom.setDir("north", kitchen);
+        frontRoom.setDir("west", livingRoom);
+        frontRoom.setDir("up", secondFloor);
+        
+        secondFloor.setDir("down", frontRoom);
+        secondFloor.setDir("west", bathroom);
+        secondFloor.setDir("east", bedroomTwo);
+        
+        bathroom.setDir("east", secondFloor);
+        
+        kitchen.setDir("south", frontRoom);
+        kitchen.setDir("east", garage);
+        
+        garage.setDir("west", kitchen);
+        
+        livingRoom.setDir("down", basement);
+        livingRoom.setDir("east", frontRoom);
+        livingRoom.setDir("south", bedroomOne);
+        
+        basement.setDir("up", livingRoom);
+        
+        bedroomOne.setDir("north", livingRoom);
+        bedroomTwo.setDir("west", secondFloor);
+        
+        //rooms[0].setNorth(rooms[1]);
+        /*
         rooms[1].setSouth(rooms[0]);
         rooms[1].setEast(rooms[2]);
         rooms[2].setWest(rooms[1]);
@@ -55,8 +90,9 @@ public class Game {
         rooms[0].setBelow(rooms[5]);
         rooms[4].setBelow(rooms[0]);
         rooms[5].setAbove(rooms[0]);
+        */
         over = false;
-        currentRoom = rooms[0];
+        currentRoom = frontRoom;
     }
     
     /**

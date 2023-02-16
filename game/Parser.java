@@ -52,34 +52,55 @@ public class Parser {
         list[1] = "east";
         list[2] = "south";
         list[3] = "west";
-        list[4] = "leap";
-        list[5] = "groundpound";
+        list[4] = "up";
+        list[5] = "down";
         
         if (command.equals("north") || command.equals("south") 
             || command.equals("west") || command.equals("east") 
-        	|| command.equals("leap") || command.equals("groundpound")) {
-            Room nextRoom = null;   // the room we're moving to
-            if (command.equals("north"))
-                nextRoom = room.getNorth();
-            else if (command.equals("south"))
-                nextRoom = room.getSouth();
-            else if (command.equals("west"))
-                nextRoom = room.getWest();
-            else if (command.equals("east"))
-                nextRoom = room.getEast();
-            else if (command.equals("leap")) //added
-            	nextRoom = room.getAbove();
-            else if (command.equals("groundpound")) { //added
-            	nextRoom = room.getBelow();
-            	System.out.println("You crashed through the floor.");
+        	|| command.equals("up") || command.equals("down")) {
+        	if (room.getDir(command) == null) {
+                System.out.println("There is no room in that direction.");
             }
-            if (nextRoom == null) {
-                System.out.println("There is no door in that direction.");
-                nextRoom = room;
-                game.setCurrentRoom(nextRoom);
+            if (command.equals("north")) {
+            	if(room.getDir("north") != null) {
+            		room = room.getDir("north");
+            	}
+            	game.setCurrentRoom(room);
             }
-            else
-                game.setCurrentRoom(nextRoom);
+            else if (command.equals("south")) {
+            	if(room.getDir("south") != null) {
+            		room = room.getDir("south");
+            	}
+            	game.setCurrentRoom(room);
+            }
+            else if (command.equals("west")) {
+            	if(room.getDir("west") != null) {
+            		room = room.getDir("west");
+            	}
+            	game.setCurrentRoom(room);
+            }
+            else if (command.equals("east")) {
+            	if(room.getDir("east") != null) {
+            		room = room.getDir("east");
+            	}
+            	game.setCurrentRoom(room);
+            }
+            else if (command.equals("up")) { //added
+            	if(room.getDir("up") != null) {
+                	room = room.getDir("up");
+            		System.out.println("You went up the stairs");
+            	}
+            	game.setCurrentRoom(room);
+            }
+            else if (command.equals("down")) { //added
+            	if(room.getDir("down") != null) {
+                	room = room.getDir("down");
+            		System.out.println("You went down the stairs");
+            	}
+            	game.setCurrentRoom(room);
+            }
+            
+            
             
             
         }else if(command.equals("help")) {
