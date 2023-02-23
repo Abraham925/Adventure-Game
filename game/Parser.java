@@ -19,6 +19,11 @@ public class Parser {
      * For user input from the keyboard.
      */
     private Scanner keyboard;
+    
+    /**
+     * Stores the list of usable commands
+     */
+    private String[] list = new String[6];
 
     /**
      * Plain constructor
@@ -26,6 +31,7 @@ public class Parser {
     public Parser() {
         keyboard = new Scanner(System.in);
     }
+    
 
     /**
      * Let the user make one "turn" at this game.
@@ -41,37 +47,77 @@ public class Parser {
 
         System.out.print("Enter command--> ");
         String command = keyboard.nextLine().toLowerCase();  // user's command
-
-
+        
+        list[0] = "north";
+        list[1] = "east";
+        list[2] = "south";
+        list[3] = "west";
+        list[4] = "up";
+        list[5] = "down";
+        
         if (command.equals("north") || command.equals("south") 
             || command.equals("west") || command.equals("east") 
-        	|| command.equals("leap") || command.equals("groundpound")) {
-            Room nextRoom = null;   // the room we're moving to
-            
+        	|| command.equals("up") || command.equals("down")) {
+        	if (room.getDir(command) == null) {
+                System.out.println("There is no room in that direction.");
+            }
             if (command.equals("north")) {
-                nextRoom = room.getDirection("north");
-            }else if (command.equals("south")) {
-                nextRoom = room.getDirection("south");
-            }else if (command.equals("west")) {
-                nextRoom = room.getDirection("west");
-            }else if (command.equals("east")) {
-                nextRoom = room.getDirection("east");
-            }else if (command.equals("leap")) {//added
-            	nextRoom = room.getDirection("leap");
-            }else if (command.equals("groundpound")) {//added
-            	nextRoom = room.getDirection("groundpound");
+            	if(room.getDir("north") != null) {
+            		room = room.getDir("north");
+            	}
+            	game.setCurrentRoom(room);
+            }
+            else if (command.equals("south")) {
+            	if(room.getDir("south") != null) {
+            		room = room.getDir("south");
+            	}
+            	game.setCurrentRoom(room);
+            }
+            else if (command.equals("west")) {
+            	if(room.getDir("west") != null) {
+            		room = room.getDir("west");
+            	}
+            	game.setCurrentRoom(room);
+            }
+            else if (command.equals("east")) {
+            	if(room.getDir("east") != null) {
+            		room = room.getDir("east");
+            	}
+            	game.setCurrentRoom(room);
+            }
+            else if (command.equals("up")) { //added
+            	if(room.getDir("up") != null) {
+                	room = room.getDir("up");
+            		System.out.println("You went up the stairs");
+            	}
+            	game.setCurrentRoom(room);
+            }
+            else if (command.equals("down")) { //added
+            	if(room.getDir("down") != null) {
+                	room = room.getDir("down");
+            		System.out.println("You went down the stairs");
+            	}
+            	game.setCurrentRoom(room);
             }
             
-            if (nextRoom == null) { 
-                System.out.println("There is no door in that direction.");
-            }else {
-                game.setCurrentRoom(nextRoom);
-        	}
-        } else {
+            
+            
+            
+        }else if(command.equals("help")) {
+        	help();
+        }else {
             System.out.println("I do not know how to " + command + ".");
         }
 
     }
-
+    
+    public void help() {
+    	for(int i = 0; i<list.length; i+=2) {
+        	if(i+1 == list.length)
+        		System.out.println(list[i]);
+        	else
+        		System.out.println(list[i] + "\t" + list[i+1]);
+    	}
+    }
 
 }

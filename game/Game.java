@@ -34,27 +34,48 @@ public class Game {
      */
     public Room getCurrentRoom() { return currentRoom; }
     
+    
+    
     /**
      * Constructor to set up the game.
      */
     public Game() {
-        Room[] rooms = new Room[5];
-        for (int i = 0; i < rooms.length; i++) {
-            rooms[i] = new Room("a room");        	
-        }	
-        for (int i = 0; i < rooms.length; i++) {
-        	if (i+1 < rooms.length) {
-        		rooms[i].setDirection("north", rooms[i+1]);
-        	} else if (i+2 <= rooms.length) {
-        		rooms[i].setDirection("south", rooms[i-1]);
-        	} else if (i-1 >= rooms.length) {
-        		rooms[i].setDirection("east", rooms[i+2]);
-        	} else if (i+2 >= rooms.length) {
-        		rooms[i].setDirection("west", rooms[i-2]);
-        	}
-        }
+        Room frontRoom = new Room("Front Room");
+        Room livingRoom = new Room("Living Room");
+        Room kitchen = new Room("Kitchen");
+        Room garage = new Room("Garage");
+        Room secondFloor = new Room("Second Floor");
+        Room bathroom = new Room("Bathroom");
+        Room basement = new Room("Basement");
+        Room bedroomOne = new Room("Bedroom 1st Floor");
+        Room bedroomTwo = new Room("Bedroom 2nd Floor");
+        
+        frontRoom.setDir("north", kitchen);
+        frontRoom.setDir("west", livingRoom);
+        frontRoom.setDir("up", secondFloor);
+        
+        secondFloor.setDir("down", frontRoom);
+        secondFloor.setDir("west", bathroom);
+        secondFloor.setDir("east", bedroomTwo);
+        
+        bathroom.setDir("east", secondFloor);
+        
+        kitchen.setDir("south", frontRoom);
+        kitchen.setDir("east", garage);
+        
+        garage.setDir("west", kitchen);
+        
+        livingRoom.setDir("down", basement);
+        livingRoom.setDir("east", frontRoom);
+        livingRoom.setDir("south", bedroomOne);
+        
+        basement.setDir("up", livingRoom);
+        
+        bedroomOne.setDir("north", livingRoom);
+        bedroomTwo.setDir("west", secondFloor);
+        
         over = false;
-        currentRoom = rooms[0];
+        currentRoom = frontRoom;
     }
     
     /**

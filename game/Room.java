@@ -14,23 +14,14 @@ import java.util.HashMap;
  */
 
 public class Room {
-    
-    //utilize get(key) and put(key, value)
     HashMap<String, Room> directions = new HashMap<String, Room>();
     
-    
-    public void setDirection(String directionName, Room leadingTo) {
-    	directions.put(directionName, leadingTo);
-    }
-    
-    public Room getDirection(String directionName) {
-    	return directions.get(directionName);
-    }
-       
     /**
      * A description of this room
      */
     private String description;
+    
+    private HashMap<String, Room> dir = new HashMap<String, Room>();
 
     /**
      * Constructor.
@@ -38,14 +29,19 @@ public class Room {
      */
     public Room(String description) { this.description = description; }
     	
+    
+    public Room getDir(String direction) {
+		return dir.get(direction);
+	}
+
+
+	public void setDir(String direction, Room room) {
+		dir.put(direction, room);
+	}
+	
     /**
      * Retrieve a description of this room (to the user).
      */
-    public String getDescription() { return description; }
-
-    
-    
-    
-
+    public String getDescription() { return description; }    
 	
 }
