@@ -14,7 +14,7 @@ package game;
 public class PlayGame {
     
     public static void main(String[] args) {
-        System.out.println("Welcome to the game");
+        System.out.println("welCoMe tO tHe gAme");
         Game game = new Game();   // reference to the game object
         Parser parser = new Parser();
 
