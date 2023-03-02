@@ -42,7 +42,25 @@ public class Game {
      * Constructor to set up the game.
      */
     public Game() {
-        //Room[] rooms = new Room[6];
+    	
+    	
+    	
+    	Room Blackhole = new Room("You feel your lungs compressing. You have 15 seconds to find the wormhole.");
+    	Room LightSource = new Room("Black holes don't have light. All you see is nothing.");
+    	Room StarFragments = new Room("Surrounding you are fragments left behind by the collapse of an ancient giant star. You notice less fragments than when you first spotted them.");
+    	Room Wormhole = new Room("The only escape from the black hole. There is a bright neutron star in the distance with some accompanying asteroid fragments.");
+    	
+    	Blackhole.setDir("light", LightSource);
+    	LightSource.setDir("back", Blackhole);
+    	Blackhole.setDir("distant fragments", StarFragments);
+    	StarFragments.setDir("blackhole", Blackhole);
+    	StarFragments.setDir("wormhole", Wormhole);
+    	
+    	//Rooms to be connected to worm hole
+    	
+    	
+    	
+    	/*
         Room frontRoom = new Room("Front Room");
         Room livingRoom = new Room("Living Room");
         Room kitchen = new Room("Kitchen");
@@ -78,7 +96,7 @@ public class Game {
         bedroomTwo.setDir("west", secondFloor);
         
         //rooms[0].setNorth(rooms[1]);
-        /*
+        
         rooms[1].setSouth(rooms[0]);
         rooms[1].setEast(rooms[2]);
         rooms[2].setWest(rooms[1]);
@@ -91,8 +109,9 @@ public class Game {
         rooms[4].setBelow(rooms[0]);
         rooms[5].setAbove(rooms[0]);
         */
+        
         over = false;
-        currentRoom = frontRoom;
+        currentRoom = Blackhole;
     }
     
     /**

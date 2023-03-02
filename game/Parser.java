@@ -12,6 +12,7 @@ package game;
  */
 
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class Parser {
 
@@ -20,18 +21,27 @@ public class Parser {
      */
     private Scanner keyboard;
     
-    /**
-     * Stores the list of usable commands
-     */
-    private String[] list = new String[6];
+    private Room room;
+    
+    private Game game;
+    
+    private HashMap<String, Command> map = new HashMap<String, Command>();
 
     /**
      * Plain constructor
      */
-    public Parser() {
+    public Parser(Game game) {
+    	this.game = game;
+        map.put("look", new Look(game));
+        map.put("ls", new Look(game));
+        map.put("crouch", new Crouch());
         keyboard = new Scanner(System.in);
     }
     
+    /**
+     * User input
+     */
+    private String command = "";
 
     /**
      * Let the user make one "turn" at this game.
@@ -39,41 +49,33 @@ public class Parser {
      * a command, and interpret the command.
      * @param game A reference to the object representing the game.
      */
-    public void executeTurn(Game game) {
+    public void executeTurn() {
+    	
         // The room that the user is in.
-        Room room = game.getCurrentRoom();
-
-        System.out.println(room.getDescription());
+        room = game.getCurrentRoom();
+        
+        if(command.equals("")) {//game just started, shows room description
+        	System.out.println(room.getDescription());
+        }
 
         System.out.print("Enter command--> ");
-        String command = keyboard.nextLine().toLowerCase();  // user's command
-        
-        //command list
-        list[0] = "north";
-        list[1] = "east";
-        list[2] = "south";
-        list[3] = "west";
-        list[4] = "up";
-        list[5] = "down";
+        command = keyboard.nextLine().toLowerCase();  // user's command
         
         
-        	if (room.getDir(command) == null) {
-                System.out.println("Nothing else exists that way.");
-            }else {
-            	room = room.getDir(command);
-            	game.setCurrentRoom(room);
-            }
-
+        if (room.getDir(command) == null) { //command is not a direction
+        	if(getCommand(command) != null) { //command was typed in, must be an action
+        		getCommand(command).run();
+        	}else { //not a direction or an action
+        		System.out.println("Nothing else exists that way.");
+        	}
+        }else { //command is a direction
+        	room = room.getDir(command);
+        	game.setCurrentRoom(room);
+        	System.out.println(room.getDescription());
+        }
     }
     
-    
-    public void help() {
-    	for(int i = 0; i<list.length; i+=2) {
-        	if(i+1 == list.length)
-        		System.out.println(list[i]);
-        	else
-        		System.out.println(list[i] + "\t" + list[i+1]);
-    	}
+    public Command getCommand(String com) {
+    	return map.get(com);
     }
-
 }

@@ -40,6 +40,10 @@ public class Room {
     public Room getDir(String direction) {
 		return dir.get(direction);
 	}
+    
+    public HashMap<String, Room> getDirMap(){
+    	return dir;
+    }
 
     /**
      * @param the direction and the room in that direction
