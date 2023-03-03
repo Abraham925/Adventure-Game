@@ -2,7 +2,7 @@ package game;
 
 public class Crouch implements Command {
 	
-	private boolean cr = false;
+	private boolean cr;
 
 	public void run() {
 		cr = !cr;

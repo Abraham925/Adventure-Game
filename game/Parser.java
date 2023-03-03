@@ -25,6 +25,8 @@ public class Parser {
     
     private Game game;
     
+    //private boolean toggleCrouch = false;
+    
     private HashMap<String, Command> map = new HashMap<String, Command>();
 
     /**
@@ -35,6 +37,7 @@ public class Parser {
         map.put("look", new Look(game));
         map.put("ls", new Look(game));
         map.put("crouch", new Crouch());
+        map.put("toggle-crouch", new ToggleCrouch());
         keyboard = new Scanner(System.in);
     }
     
@@ -73,9 +76,17 @@ public class Parser {
         	game.setCurrentRoom(room);
         	System.out.println(room.getDescription());
         }
+        
+        
+        /*if(!getCommand("toggle-crouch").getTogCro()) {
+        	boolean cr = map.get("crouch").crouch();
+        	cr = !cr;
+        }*/
     }
     
     public Command getCommand(String com) {
     	return map.get(com);
     }
+    
+    
 }

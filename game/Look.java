@@ -1,6 +1,7 @@
 package game;
 
 public class Look implements Command {
+	
 	private Game game;
 	
 	public Look(Game game){

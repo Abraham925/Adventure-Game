@@ -45,18 +45,30 @@ public class Game {
     	
     	
     	
-    	Room Blackhole = new Room("You feel your lungs compressing. You have 15 seconds to find the wormhole.");
+    	Room Blackhole = new Room("Center of the black hole. You feel your lungs compressing. You have 30 seconds to find the wormhole.");
     	Room LightSource = new Room("Black holes don't have light. All you see is nothing.");
     	Room StarFragments = new Room("Surrounding you are fragments left behind by the collapse of an ancient giant star. You notice less fragments than when you first spotted them.");
+    	Room SpaceTear = new Room("It appears to be a tear in space, I wouldn't want to go near that...");
+    	Room WarpedDebris = new Room("The debris that was once here has been completely warped in size and color, emitting a somewhat dark shade of brown. From the outside, only sometimes is it visible.");
     	Room Wormhole = new Room("The only escape from the black hole. There is a bright neutron star in the distance with some accompanying asteroid fragments.");
+    	Room NeutronStar = new Room("Known to be very hot but a beautiful blue, this star is older than the others by far. It is on the far side of a system by the name HP 50329Z. Planets ASCR407 and Vydol can be seen in the distance.");
     	
     	Blackhole.setDir("light", LightSource);
     	LightSource.setDir("back", Blackhole);
     	Blackhole.setDir("distant fragments", StarFragments);
     	StarFragments.setDir("blackhole", Blackhole);
-    	StarFragments.setDir("wormhole", Wormhole);
+    	Blackhole.setDir("space tear", SpaceTear);
+    	SpaceTear.setDir("blackhole", Blackhole);
+    	SpaceTear.setDir("debris", WarpedDebris);
+    	WarpedDebris.setDir("space tear", SpaceTear);
+    	WarpedDebris.setDir("distant fragments", StarFragments);
+    	
+    	//if(currentRoom == SpaceTear) {
+    		StarFragments.setDir("wormhole", Wormhole);
+    	//}
     	
     	//Rooms to be connected to worm hole
+    	Wormhole.setDir("star", NeutronStar);
     	
     	
     	

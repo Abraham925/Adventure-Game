@@ -20,6 +20,8 @@ public class Room {
      */
     private String description;
     
+    private boolean open = false;
+    
     /**
      * Holds the HashMap for a room, containing pairs of a direction and corresponding room
      */
@@ -57,5 +59,9 @@ public class Room {
      * Retrieve a description of this room (to the user).
      */
     public String getDescription() { return description; }
+    
+    public boolean getOpen() {
+    	return open;
+    }
 	
 }
