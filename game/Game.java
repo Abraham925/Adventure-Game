@@ -139,6 +139,9 @@ public class Game {
         
         hallwaySouthWest.setDir("left", hallwayWest);
         hallwaySouthWest.setDir("right", hallwaySouth);
+        //first floor rooms
+        Room elevatorFloor1 = new Room("With a ding, the doors upon unto the first floor.");
+        Room cargo = new Room("You look around and see scattered boxes with belongings scattered across the ground. Can any of it be useful?");
         
         
         //space station end
