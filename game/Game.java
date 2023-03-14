@@ -40,7 +40,7 @@ public class Game {
      * Constructor to set up the game.
      */
     public Game() { 
-    	//starting world drop
+    	//starting world
     	System.out.println("You are a Galactic Federation Space TrooptroopTM on the star outpost"
     			+ "\n in Gamma Quadrant! Your commander has given you orders to explore the great unknow"
     			+ "\n and you have just bravely flown into an asteriod! You check your vital. You are not dead"
@@ -58,12 +58,40 @@ public class Game {
         Room emptyRegion3 = new Room("There is... nothing...");
         Room emptyRegion4 = new Room("There is... nothing...");
         Room emptyRegion5 = new Room("There is... nothing...");
+        //starting world end
+    	
+        //black hole region    	
+    	Room Blackhole = new Room("Center of the black hole. You feel your lungs compressing. You have 30 seconds to find the wormhole.");
+    	Room LightSource = new Room("Black holes don't have light. All you see is nothing.");
+    	Room StarFragments = new Room("Surrounding you are fragments left behind by the collapse of an ancient giant star. You notice less fragments than when you first spotted them.");
+    	Room SpaceTear = new Room("It appears to be a tear in space, I wouldn't want to go near that...");
+    	Room WarpedDebris = new Room("The debris that was once here has been completely warped in size and color, emitting a somewhat dark shade of brown. From the outside, only sometimes is it visible.");
+    	Room Wormhole = new Room("The only escape from the black hole. There is a bright neutron star in the distance with some accompanying asteroid fragments.");
+    	Room NeutronStar = new Room("Known to be very hot but a beautiful blue, this star is older than the others by far. It is on the far side of a system by the name HP 50329Z. Planets ASCR407 and Vydol can be seen in the distance.");
+    	
+    	Blackhole.setDir("light", LightSource);
+    	LightSource.setDir("back", Blackhole);
+    	Blackhole.setDir("distant fragments", StarFragments);
+    	StarFragments.setDir("blackhole", Blackhole);
+    	Blackhole.setDir("space tear", SpaceTear);
+    	SpaceTear.setDir("blackhole", Blackhole);
+    	SpaceTear.setDir("debris", WarpedDebris);
+    	WarpedDebris.setDir("space tear", SpaceTear);
+    	WarpedDebris.setDir("distant fragments", StarFragments);
+    	
+    	//if(currentRoom == SpaceTear) {
+    		StarFragments.setDir("wormhole", Wormhole);
+    	//}
+    	
+    	//Rooms to be connected to worm hole
+    	Wormhole.setDir("star", NeutronStar);
         
         Room swirlingMassEntrance = new Room("Bathroom");
         Room redSunEntrance = new Room("Basement");
         Room deathShipEntrance = new Room("Bedroom 1st Floor");
         Room blackHoleEntrance = new Room("Bedroom 2nd Floor");
-    	//starting world end
+    	//black hole end
+        
         
         //space station begin
         Room hangar = new Room("You find yourself in a large landing bay. Something seems off. To your left is a door that say MAINTINANCE. "
@@ -112,7 +140,7 @@ public class Game {
         		+ "Something echos through the vents.");
         Room hallwayWest = new Room("There is something dripping off to your right. There is a room in front of you. It is all black. You feel sick.");
         
-        hallwayEntrance.setDir("HANGAR", hangar);
+        hallwayEntrance.setDir("hangar", hangar);
         hallwayEntrance.setDir("left", hallwaySouthWest);
         hallwayEntrance.setDir("right", hallwaySouth);
         
@@ -139,12 +167,53 @@ public class Game {
         
         hallwaySouthWest.setDir("left", hallwayWest);
         hallwaySouthWest.setDir("right", hallwaySouth);
-        //first floor rooms
-        Room elevatorFloor1 = new Room("With a ding, the doors upon unto the first floor.");
-        Room cargo = new Room("You look around and see scattered boxes with belongings scattered across the ground. Can any of it be useful?");
+        //first floor rooms and elevator
+        Room elevatorFloor1 = new Room("Theres a panel with the numbers 1-4. There are scratch marks on the wall. "
+        		+ "You feel the elevator shake a little when you step on.");
+        Room elevatorFloor2 = new Room("It looks like the ceiling just outside the elevator has caved in."
+        		+ " You try moving the rubble but it won't budge.");
+        Room elevatorFloor3 = new Room("The floor just outside the elevator is all gone."
+        		+ "You see a black form on the rubble below. You'll have to jump if you want to make it across.");
+        Room elevatorFloor4= new Room("You see what looks like a command room. Out of the bay window you can see the stars.");
+        Room cargoBay = new Room("You look around and see scattered boxes with belongings scattered across the ground. Can any of it be useful?");
+        Room flickeringLight = new Room("You are in what seem to be baraks. Scratches mark the walls. You see a figure coughing.");
         
+        elevatorFloor1.setDir("2", elevatorFloor2);
+        elevatorFloor1.setDir("3", elevatorFloor3);
+        elevatorFloor1.setDir("4", elevatorFloor4);
+        
+        elevatorFloor2.setDir("1", elevatorFloor1);
+        elevatorFloor2.setDir("3", elevatorFloor3);
+        elevatorFloor2.setDir("4", elevatorFloor4);
+        
+        elevatorFloor3.setDir("1", elevatorFloor1);
+        elevatorFloor3.setDir("2", elevatorFloor2);
+        elevatorFloor3.setDir("4", elevatorFloor4);
+        
+        elevatorFloor4.setDir("1", elevatorFloor1);
+        elevatorFloor4.setDir("2", elevatorFloor2);
+        elevatorFloor4.setDir("3", elevatorFloor3);
+        
+        hallwayNorth.setDir("elevator", elevatorFloor1);
+        hallwaySouth.setDir("cargo", cargoBay);
+        hallwayEastSouth.setDir("light", flickeringLight);
+        
+        //floor 3 set up
+        Room elevatorExitF3 = new Room ("You see a hallway illuminated by a red light eminating from the end of the hall."
+        		+ "You see the elevator on the other side of the gap in the floor.");
+        Room hallway1F3 = new Room ("You can vaguely make out something standing next to the red light."
+        		+ "There is a door next to you.");
+        //ITEM
+        Room hallway1DoorF3 = new Room ("Inside the room there are some strange looking plants growing in glass containers."
+        		+ "Most of the containers are broken or shattered, but on is still intact.");
+        Room hallway2F3 = new Room ("The red light seems to be coming from an panel in a room at the end of the hall."
+        		+ "The form appears to be human.");
+        Room hallway3F3 = new Room ("You see something flashing next to the red light on the panel. The form isn't moving.");
         
         //space station end
+        currentRoom = hangar;   
+        
+        over = false;
         currentRoom = hangar;
     }
     
