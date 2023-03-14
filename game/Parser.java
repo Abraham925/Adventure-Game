@@ -37,8 +37,6 @@ public class Parser {
     	this.game = game;
         map.put("look", new Look(game));
         map.put("ls", new Look(game));
-        map.put("crouch", new Crouch());
-        map.put("toggle-crouch", new ToggleCrouch());
         keyboard = new Scanner(System.in);
     }
     
@@ -64,37 +62,9 @@ public class Parser {
 
         System.out.print("Enter command--> ");
         command = keyboard.nextLine().toLowerCase();  // user's command
-        
-        if (room.getDir(command) == null) {
-        	System.out.println("There is only the empty void of space");
-        } else {
-        	room = room.getDir(command);
-        	game.setCurrentRoom(room);
-        }
-            
-            
-            
-            
-        if(command.equals("help")) {
-        	help();
-        }else {
-            System.out.println("I do not know how to " + command + ".");
-        }
-
-    }
     
-    public void lookOutside(Room currentRoom) {
-    	
-    }
     
-    public void help() {
-    	ArrayList<String> list= new ArrayList<String>();
-    	for(int i = 0; i<list.length; i+=2) {
-        	if(i+1 == list.length)
-        		System.out.println(list[i]);
-        	else
-        		System.out.println(list[i] + "\t" + list[i+1]);
-    	}
+    
         if (room.getDir(command) == null) { //command is not a direction
         	if(getCommand(command) != null) { //command was typed in, must be an action
         		getCommand(command).run();
@@ -106,17 +76,10 @@ public class Parser {
         	game.setCurrentRoom(room);
         	System.out.println(room.getDescription());
         }
-        
-        
-        /*if(!getCommand("toggle-crouch").getTogCro()) {
-        	boolean cr = map.get("crouch").crouch();
-        	cr = !cr;
-        }*/
     }
     
     public Command getCommand(String com) {
     	return map.get(com);
     }
-    
     
 }

@@ -12,55 +12,53 @@ package game;
  * Lab 5
  * Feb 8, 2007
  */
+    public class Game {
+    	/**
+         * The current room the user is in. This serves to
+         * purposes-- it is our only permanent connection to
+         * the rooms in this game (the other rooms are reachable
+         * by traversing this room's "doors"-- and it maintains
+         * the state by representing the user's current location.
+         */
+        private Room currentRoom;
 
-public class Game {
-	
-    /**
-     * The current room the user is in. This serves to
-     * purposes-- it is our only permanent connection to
-     * the rooms in this game (the other rooms are reachable
-     * by traversing this room's "doors"-- and it maintains
-     * the state by representing the user's current location.
-     */
-    private Room currentRoom;
+        /**
+         * Keeps track of whether this game is over or not.
+         */
+        private boolean over;
+        
+        /**
+         * Return the room in which the user is currently.
+         */
+        public Room getCurrentRoom() { return currentRoom; }
+        
+        
+        
+        /**
+         * Constructor to set up the game.
+         */
+        public Game() { 
+        	//starting world
+        	System.out.println("You are a Galactic Federation Space TrooptroopTM on the star outpost"
+        			+ "\n in Gamma Quadrant! Your commander has given you orders to explore the great unknow"
+        			+ "\n and you have just bravely flown into an asteriod! You check your vital. You are not dead"
+        			+ "\n However, you don't seem to know where in the great expanse of the universe you are...");
+        	System.out.println("\nCOMPUTER: You may now enter a command");
+        	Room startingRegion = new Room("You see the great expanse of space laid before you.");    	
+        	Room asteriodRegion = new Room("The quadrant is filled with asteriod hurtling towards your ship");
+            Room metalDebrisRegion = new Room("You see an object glinting in the light of the dying sun. There is"
+            		+ "still a much larger metal object further away");
+            Room warpRegion = new Room("");
+            Room deathCountRegion = new Room("A bright light hits your eye. You can feel it moving to your forehead."
+            		+ "\nA ship approaches. You must flee");
+            Room emptyRegion = new Room("There is... nothing...");
+            Room emptyRegion2 = new Room("There is... nothing...");
+            Room emptyRegion3 = new Room("There is... nothing...");
+            Room emptyRegion4 = new Room("There is... nothing...");
+            Room emptyRegion5 = new Room("There is... nothing...");
+            //starting world end
 
-    /**
-     * Keeps track of whether this game is over or not.
-     */
-    private boolean over;
-    
-    /**
-     * Return the room in which the user is currently.
-     */
-    public Room getCurrentRoom() { return currentRoom; }
-    
-    
-    
-    /**
-     * Constructor to set up the game.
-     */
-    public Game() { 
-    	//starting world
-    	System.out.println("You are a Galactic Federation Space TrooptroopTM on the star outpost"
-    			+ "\n in Gamma Quadrant! Your commander has given you orders to explore the great unknow"
-    			+ "\n and you have just bravely flown into an asteriod! You check your vital. You are not dead"
-    			+ "\n However, you don't seem to know where in the great expanse of the universe you are...");
-    	System.out.println("\nCOMPUTER: You may now enter a command");
-    	Room startingRegion = new Room("You see the great expanse of space laid before you.");    	
-    	Room asteriodRegion = new Room("The quadrant is filled with asteriod hurtling towards your ship");
-        Room metalDebrisRegion = new Room("You see an object glinting in the light of the dying sun. There is"
-        		+ "still a much larger metal object further away");
-        Room warpRegion = new Room("");
-        Room deathCountRegion = new Room("A bright light hits your eye. You can feel it moving to your forehead."
-        		+ "\nA ship approaches. You must flee");
-        Room emptyRegion = new Room("There is... nothing...");
-        Room emptyRegion2 = new Room("There is... nothing...");
-        Room emptyRegion3 = new Room("There is... nothing...");
-        Room emptyRegion4 = new Room("There is... nothing...");
-        Room emptyRegion5 = new Room("There is... nothing...");
-        //starting world end
-    	
-        //black hole region    	
+            //black hole start
     	Room Blackhole = new Room("Center of the black hole. You feel your lungs compressing. You have 30 seconds to find the wormhole.");
     	Room LightSource = new Room("Black holes don't have light. All you see is nothing.");
     	Room StarFragments = new Room("Surrounding you are fragments left behind by the collapse of an ancient giant star. You notice less fragments than when you first spotted them.");
@@ -79,10 +77,9 @@ public class Game {
     	WarpedDebris.setDir("space tear", SpaceTear);
     	WarpedDebris.setDir("distant fragments", StarFragments);
     	
-    	//if(currentRoom == SpaceTear) {
-    		StarFragments.setDir("wormhole", Wormhole);
-    	//}
-    	
+
+    	StarFragments.setDir("wormhole", Wormhole); //room to be unlocked
+    	    	
     	//Rooms to be connected to worm hole
     	Wormhole.setDir("star", NeutronStar);
         
