@@ -36,8 +36,6 @@ public class Parser {
     	this.game = game;
         map.put("look", new Look(game));
         map.put("ls", new Look(game));
-        map.put("crouch", new Crouch());
-        map.put("toggle-crouch", new ToggleCrouch());
         keyboard = new Scanner(System.in);
     }
     
@@ -64,7 +62,6 @@ public class Parser {
         System.out.print("Enter command--> ");
         command = keyboard.nextLine().toLowerCase();  // user's command
         
-        
         if (room.getDir(command) == null) { //command is not a direction
         	if(getCommand(command) != null) { //command was typed in, must be an action
         		getCommand(command).run();
@@ -77,16 +74,10 @@ public class Parser {
         	System.out.println(room.getDescription());
         }
         
-        
-        /*if(!getCommand("toggle-crouch").getTogCro()) {
-        	boolean cr = map.get("crouch").crouch();
-        	cr = !cr;
-        }*/
     }
     
     public Command getCommand(String com) {
     	return map.get(com);
     }
-    
     
 }

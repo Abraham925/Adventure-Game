@@ -43,8 +43,6 @@ public class Game {
      */
     public Game() {
     	
-    	
-    	
     	Room Blackhole = new Room("Center of the black hole. You feel your lungs compressing. You have 30 seconds to find the wormhole.");
     	Room LightSource = new Room("Black holes don't have light. All you see is nothing.");
     	Room StarFragments = new Room("Surrounding you are fragments left behind by the collapse of an ancient giant star. You notice less fragments than when you first spotted them.");
@@ -63,10 +61,9 @@ public class Game {
     	WarpedDebris.setDir("space tear", SpaceTear);
     	WarpedDebris.setDir("distant fragments", StarFragments);
     	
-    	//if(currentRoom == SpaceTear) {
-    		StarFragments.setDir("wormhole", Wormhole);
-    	//}
-    	
+
+    	StarFragments.setDir("wormhole", Wormhole); //room to be unlocked
+    	    	
     	//Rooms to be connected to worm hole
     	Wormhole.setDir("star", NeutronStar);
     	
