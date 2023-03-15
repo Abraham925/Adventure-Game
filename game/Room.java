@@ -21,15 +21,23 @@ public class Room {
      */
     private String description;
     
-    private ArrayList<Interactable> items = new ArrayList<Interactable>();
+    private ArrayList<item> items = new ArrayList<item>();
     private ArrayList<Interactable> interactables = new ArrayList<Interactable>();
     
-    public void addItem(Interactable item) {
+    public void addItem(item item) {
     	items.add(item);
     }
     
     public void addInteractable(Interactable inter) {
     	interactables.add(inter);
+    }
+    
+    public ArrayList<item> getItems(){
+    	return items;
+    }
+    
+    public ArrayList<Interactable> getInter(){
+    	return interactables;
     }
     
     /**

@@ -6,4 +6,6 @@ public interface Interactable {
 	
 	boolean isUnlocked();
 	
+	void interact();
+	
 }

@@ -20,8 +20,9 @@ public class LockedExit implements Exit {
 		if(item != null) {
 			if(item.getPosession()) {
 				game.setCurrentRoom(two);
-				if(reaction != null)
+				if(reaction != null) {
 					System.out.println(reaction);
+				}
 			}else {
 				System.out.println("This route is not viable currently.");
 			}
