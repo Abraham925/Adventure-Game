@@ -72,9 +72,9 @@ public class Parser {
         		System.out.println("Nothing else exists that way.");
         	}
         }else { //command is a direction
-        	room = room.getDir(command);
-        	game.setCurrentRoom(room);
-        	System.out.println(room.getDescription());
+        	room.getDir(command).travel();
+        	//game.setCurrentRoom(room);
+        	System.out.println(game.getCurrentRoom().getDescription());
         }
     }
     

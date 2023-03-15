@@ -12,7 +12,7 @@ package game;
  * Lab 5
  * Feb 8, 2007
  */
-    public class Game {
+public class Game {
     	/**
          * The current room the user is in. This serves to
          * purposes-- it is our only permanent connection to
@@ -56,10 +56,10 @@ package game;
             Room emptyRegion3 = new Room("There is... nothing...");
             Room emptyRegion4 = new Room("There is... nothing...");
             Room emptyRegion5 = new Room("There is... nothing...");
-            //starting world end
+        //starting world end
 
-            //black hole start
-    	Room Blackhole = new Room("Center of the black hole. You feel your lungs compressing. You have 30 seconds to find the wormhole.");
+        //black hole start
+    	Room Blackhole = new Room("Center of the black hole. You feel your lungs compressing. You have 10 turns to find the wormhole.");
     	Room LightSource = new Room("Black holes don't have light. All you see is nothing.");
     	Room StarFragments = new Room("Surrounding you are fragments left behind by the collapse of an ancient giant star. You notice less fragments than when you first spotted them.");
     	Room SpaceTear = new Room("It appears to be a tear in space, I wouldn't want to go near that...");
@@ -67,6 +67,17 @@ package game;
     	Room Wormhole = new Room("The only escape from the black hole. There is a bright neutron star in the distance with some accompanying asteroid fragments.");
     	Room NeutronStar = new Room("Known to be very hot but a beautiful blue, this star is older than the others by far. It is on the far side of a system by the name HP 50329Z. Planets ASCR407 and Vydol can be seen in the distance.");
     	
+    	Blackhole.setDir("light", new NormalExit(this, LightSource));
+    	LightSource.setDir("back", new NormalExit(this, Blackhole));
+    	Blackhole.setDir("distant fragments", new NormalExit(this, StarFragments));
+    	StarFragments.setDir("blackhole", new NormalExit(this, Blackhole));
+    	Blackhole.setDir("space tear", new NormalExit(this, SpaceTear));
+    	SpaceTear.setDir("blackhole", new NormalExit(this, Blackhole));
+    	SpaceTear.setDir("debris", new NormalExit(this, WarpedDebris));
+    	WarpedDebris.setDir("space tear", new NormalExit(this, StarFragments));
+    	WarpedDebris.setDir("distant fragments", new NormalExit(this, StarFragments));
+    	
+    	/*
     	Blackhole.setDir("light", LightSource);
     	LightSource.setDir("back", Blackhole);
     	Blackhole.setDir("distant fragments", StarFragments);
@@ -76,20 +87,25 @@ package game;
     	SpaceTear.setDir("debris", WarpedDebris);
     	WarpedDebris.setDir("space tear", SpaceTear);
     	WarpedDebris.setDir("distant fragments", StarFragments);
-    	
+    	*/
 
-    	StarFragments.setDir("wormhole", Wormhole); //room to be unlocked
+    	StarFragments.setDir("wormhole", new NormalExit(this, Wormhole)); //room to be unlocked
     	    	
     	//Rooms to be connected to worm hole
-    	Wormhole.setDir("star", NeutronStar);
+    	Wormhole.setDir("star", new NormalExit(this, NeutronStar));
+    	
+    	
         
         Room swirlingMassEntrance = new Room("Bathroom");
         Room redSunEntrance = new Room("Basement");
         Room deathShipEntrance = new Room("Bedroom 1st Floor");
-        Room blackHoleEntrance = new Room("Bedroom 2nd Floor");
-    	//black hole end
+        Room blackHoleEntrance = new Room("Seems impossibly dark in that direction...");
+    	
+        blackHoleEntrance.setDir("darkness", new NormalExit(this, Blackhole));
+        //black hole end
         
-        
+        /*
+         
         //space station begin
         Room hangar = new Room("You find yourself in a large landing bay. Something seems off. To your left is a door that say MAINTINANCE. "
         		+ "In front of you is an open door");
@@ -250,10 +266,12 @@ package game;
         
         
         //space station end
-        currentRoom = hangar;   
+
+         */
+        
+        currentRoom = blackHoleEntrance;
         
         over = false;
-        currentRoom = hangar;
     }
     
     /**
