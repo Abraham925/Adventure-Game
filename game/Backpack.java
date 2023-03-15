@@ -1,51 +1,43 @@
 package game;
 
 public class Backpack {
-	//private int part1C;
-	private int part2C;
-	private int part3C;
-	private int partFC;
-	private int telescopeC;
-	Part3 p3 = new Part3();
-	Telescope t = new Telescope();
-	Part2 p2 = new Part2();
-	FinalPart f = new FinalPart();
+	private boolean hyperdrive;
+	private boolean proplusionsystem;
+	private boolean guidancesystem;
+	private boolean gloves;
+	private boolean crowbar;
+	private boolean keycard;
+	private boolean ladder;
+
+
+
+
 	
 	public Backpack() {
-		//part1C = 0;
-		part2C = 0;
-		part3C = 0;
-		partFC = 0;
-		telescopeC = 0;
+		hyperdrive = false;
+		proplusionsystem = false;
+		guidancesystem = false;
+		gloves = false;
+		crowbar = false;
+		keycard = false;
+		ladder = false;
 	}
 	
-	public void increaseCount(String x) {
+	public void itemAcquired(String x) {
 		switch(x) {
-			case("Piece 3"): part3C ++; break;
-			case("Telescope"): telescopeC++; break;
-			case("Piece 2"): part2C++; break;
-			case("Final Part"): partFC++; break;
+			case("Hyperdive"): hyperdrive = true; break;
+			case("Proplusion System"): proplusionsystem = true; break;
+			case("Guidance System"): guidancesystem = true; break;
+			case("gloves"): gloves = true; break;
+			case("crowbar"): gloves = true; break;
+			case("keycard"): gloves = true; break;
+			case("ladder"): gloves = true; break;
+			
 		}
-	}
-	public void decreaseCount(String x) {
-		switch(x) {
-			case("Piece 3"): part3C--; break;
-			case("Telescope"): telescopeC--; break;
-			case("Piece 2"): part2C--; break;
-			case("Final Part"): partFC--; break;
-		}
-	}
-	public int getCount(String x) {
-		switch(x) {
-			case("Piece 3"): return part3C;
-			case("Telescope"): return telescopeC; 
-			case("Part 2"): return part2C;
-			case("Final Part"): return partFC;
-		}
-		return 0;
+
 	}
 	public boolean allItemsAcquired() {
-		if(part2C > 0&&partFC > 0&&part3C>0) {
+		if(hyperdrive&&proplusionsystem&&guidancesystem) {
 			return true;
 		}
 		return false;
