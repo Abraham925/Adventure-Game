@@ -1,47 +1,32 @@
 package game;
 
-import java.util.HashMap;
-import java.util.Random;
-
-public class Chest {
-	private String item;
+public class Chest implements Interactable{
 	private boolean opened;
-    /**
-     * HashMap of items
-     */
-    private HashMap<String, String> itemList;
-	
-	public Chest() {
-    	Part3 x = new Part3();
-    	Telescope y = new Telescope();
-    	Part2 z = new Part2();
-    	itemList.put(z.name(), z.use());
-    	itemList.put(y.name(), y.use());
-    	itemList.put(x.name(), x.use());
+	private item key;
+	private item item;
 
+	public Chest(item key, item item) {
 		opened = false;
+		
 	}
 	
 	
     public String getItem() {
+    	return item.name();
+    }
+    public String getKey() {
+    	return key.name();
+    }
+	@Override
+	public void unlock() {
+		opened = true;	
+	}
 
-    	if(opened == false) {
-	    	Random generator = new Random();
-	    	String[] values = (String[]) itemList.values().toArray();
-	    	String randomValue = values[generator.nextInt(values.length)];
-	    	
-	    	item = itemList.get(randomValue);
-	    	return item;
-    	}
-    	return "This chest has already been opened";
-	    	
-    }
-    public void setOpened() {
-    	opened = true;
-    }
-    public boolean getOpened() {
-    	return opened;
-    }
-	
-	
+	@Override
+	public boolean isUnlocked() {
+		return opened;
+	}
 }
+
+
+
