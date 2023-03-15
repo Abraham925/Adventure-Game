@@ -1,28 +1,31 @@
 package game;
 
-public class Chest {
-	private String item;
-	private String key;
+public class Chest implements Interactable{
 	private boolean opened;
+	private item key;
+	private item item;
 
-	public Chest(String key, String item) {
+	public Chest(item key, item item) {
 		opened = false;
 		
 	}
 	
 	
     public String getItem() {
-    	return item;
+    	return item.name();
     }
     public String getKey() {
-    	return key;
+    	return key.name();
     }
-    public void setOpened() {
-    	opened = true;
-    }
-    public boolean getOpened() {
-    	return opened;
-    }
+	@Override
+	public void unlock() {
+		opened = true;	
+	}
+
+	@Override
+	public boolean isUnlocked() {
+		return opened;
+	}
 }
 
 
