@@ -62,6 +62,16 @@ public class Game {
         Room redSunEntrance = new Room("Basement");
         Room deathShipEntrance = new Room("Bedroom 1st Floor");
         Room blackHoleEntrance = new Room("Seems impossibly dark in that direction...");    
+        TestItem test1 = new TestItem();
+        test1.itemName("test1");
+        TestItem test2 = new TestItem();
+        test2.itemName("test2");
+        TestItem test3 = new TestItem();
+        test3.itemName("test3");
+        blackHoleEntrance.addItem(test1);
+        blackHoleEntrance.addItem(test2);
+        blackHoleEntrance.addItem(test3);
+        
         
         //black hole start
     	Room Blackhole = new Room("Center of the black hole. You feel your lungs compressing. You have 10 turns to find the wormhole.");
@@ -73,7 +83,9 @@ public class Game {
     	Room NeutronStar = new Room("Known to be very hot but a beautiful blue, this star is older than the others by far. It is on the far side of a system by the name HP 50329Z. Planets ASCR407 and Vydol can be seen in the distance.");
     	
     	
-    	blackHoleEntrance.setDir("darkness", new NormalExit(this, Blackhole));
+    	RoomTie lever = new RoomTie("You feel the ground shake and hear a high pitched screech from far away.");
+    	blackHoleEntrance.setDir("darkness", new LockedExit(this, Blackhole, null, lever, null));
+    	blackHoleEntrance.addInteractable(lever);
     	Blackhole.setDir("light", new NormalExit(this, LightSource));
     	LightSource.setDir("back", new NormalExit(this, Blackhole));
     	Blackhole.setDir("distant fragments", new NormalExit(this, StarFragments));

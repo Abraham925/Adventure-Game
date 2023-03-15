@@ -37,6 +37,8 @@ public class Parser {
     	this.game = game;
         map.put("look", new Look(game));
         map.put("ls", new Look(game));
+        map.put("search", new Search(game));
+        map.put("help", new Help(this));
         keyboard = new Scanner(System.in);
     }
     
@@ -55,6 +57,12 @@ public class Parser {
     	
         // The room that the user is in.
         room = game.getCurrentRoom();
+        
+        if(room.getInter().size() == 1) {
+        	map.put("use", new Use(room.getInter().get(0)));
+        }else {
+        	map.remove("use");
+        }
         
         if(command.equals("")) {//game just started, shows room description
         	System.out.println(room.getDescription());
@@ -80,6 +88,10 @@ public class Parser {
     
     public Command getCommand(String com) {
     	return map.get(com);
+    }
+    
+    public HashMap<String, Command> getMap(){
+    	return map;
     }
     
 }
