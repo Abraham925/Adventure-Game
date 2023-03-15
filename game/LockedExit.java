@@ -6,18 +6,22 @@ public class LockedExit implements Exit {
 	private Room two;
 	private item item;
 	private Interactable inter;
+	private String reaction;
 	
-	public LockedExit(Game game, Room two, item item, Interactable inter) {
+	public LockedExit(Game game, Room two, item item, Interactable inter, String reaction) {
 		this.game = game;
 		this.two = two;
 		this.item = item;
 		this.inter = inter;
+		this.reaction = reaction;
 	}
 
 	public void travel() {
 		if(item != null) {
 			if(item.getPosession()) {
 				game.setCurrentRoom(two);
+				if(reaction != null)
+					System.out.println(reaction);
 			}else {
 				System.out.println("This route is not viable currently.");
 			}

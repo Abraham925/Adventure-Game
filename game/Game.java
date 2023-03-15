@@ -58,6 +58,11 @@ public class Game {
             Room emptyRegion5 = new Room("There is... nothing...");
         //starting world end
 
+        Room swirlingMassEntrance = new Room("Bathroom");
+        Room redSunEntrance = new Room("Basement");
+        Room deathShipEntrance = new Room("Bedroom 1st Floor");
+        Room blackHoleEntrance = new Room("Seems impossibly dark in that direction...");    
+        
         //black hole start
     	Room Blackhole = new Room("Center of the black hole. You feel your lungs compressing. You have 10 turns to find the wormhole.");
     	Room LightSource = new Room("Black holes don't have light. All you see is nothing.");
@@ -67,6 +72,8 @@ public class Game {
     	Room Wormhole = new Room("The only escape from the black hole. There is a bright neutron star in the distance with some accompanying asteroid fragments.");
     	Room NeutronStar = new Room("Known to be very hot but a beautiful blue, this star is older than the others by far. It is on the far side of a system by the name HP 50329Z. Planets ASCR407 and Vydol can be seen in the distance.");
     	
+    	
+    	blackHoleEntrance.setDir("darkness", new NormalExit(this, Blackhole));
     	Blackhole.setDir("light", new NormalExit(this, LightSource));
     	LightSource.setDir("back", new NormalExit(this, Blackhole));
     	Blackhole.setDir("distant fragments", new NormalExit(this, StarFragments));
@@ -77,17 +84,7 @@ public class Game {
     	WarpedDebris.setDir("space tear", new NormalExit(this, StarFragments));
     	WarpedDebris.setDir("distant fragments", new NormalExit(this, StarFragments));
     	
-    	/*
-    	Blackhole.setDir("light", LightSource);
-    	LightSource.setDir("back", Blackhole);
-    	Blackhole.setDir("distant fragments", StarFragments);
-    	StarFragments.setDir("blackhole", Blackhole);
-    	Blackhole.setDir("space tear", SpaceTear);
-    	SpaceTear.setDir("blackhole", Blackhole);
-    	SpaceTear.setDir("debris", WarpedDebris);
-    	WarpedDebris.setDir("space tear", SpaceTear);
-    	WarpedDebris.setDir("distant fragments", StarFragments);
-    	*/
+    	
 
     	StarFragments.setDir("wormhole", new NormalExit(this, Wormhole)); //room to be unlocked
     	    	
@@ -96,12 +93,9 @@ public class Game {
     	
     	
         
-        Room swirlingMassEntrance = new Room("Bathroom");
-        Room redSunEntrance = new Room("Basement");
-        Room deathShipEntrance = new Room("Bedroom 1st Floor");
-        Room blackHoleEntrance = new Room("Seems impossibly dark in that direction...");
+        
     	
-        blackHoleEntrance.setDir("darkness", new NormalExit(this, Blackhole));
+        
         //black hole end
         
         /*
