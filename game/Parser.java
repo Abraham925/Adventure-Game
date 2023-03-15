@@ -12,6 +12,7 @@ package game;
  */
 
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Parser {
@@ -61,7 +62,9 @@ public class Parser {
 
         System.out.print("Enter command--> ");
         command = keyboard.nextLine().toLowerCase();  // user's command
-        
+    
+    
+    
         if (room.getDir(command) == null) { //command is not a direction
         	if(getCommand(command) != null) { //command was typed in, must be an action
         		getCommand(command).run();
@@ -69,11 +72,10 @@ public class Parser {
         		System.out.println("Nothing else exists that way.");
         	}
         }else { //command is a direction
-        	room = room.getDir(command);
-        	game.setCurrentRoom(room);
-        	System.out.println(room.getDescription());
+        	room.getDir(command).travel();
+        	//game.setCurrentRoom(room);
+        	System.out.println(game.getCurrentRoom().getDescription());
         }
-        
     }
     
     public Command getCommand(String com) {

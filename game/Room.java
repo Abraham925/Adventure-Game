@@ -21,12 +21,21 @@ public class Room {
      */
     private String description;
     
-    private ArrayList<String> items;
+    private ArrayList<Interactable> items = new ArrayList<Interactable>();
+    private ArrayList<Interactable> interactables = new ArrayList<Interactable>();
+    
+    public void addItem(Interactable item) {
+    	items.add(item);
+    }
+    
+    public void addInteractable(Interactable inter) {
+    	interactables.add(inter);
+    }
     
     /**
-     * Holds the HashMap for a room, containing pairs of a direction and corresponding room
+     * Holds the HashMap for a room, containing pairs of a direction and corresponding exit door
      */
-    private HashMap<String, Room> dir = new HashMap<String, Room>();
+    private HashMap<String, Exit> dir = new HashMap<String, Exit>();
 
     /**
      * Constructor.
@@ -38,22 +47,22 @@ public class Room {
     
     /**
      * @param the inputed direction
-     * @return the room in that direction
+     * @return the exit in that direction
      */
-    public Room getDir(String direction) {
+    public Exit getDir(String direction) {
 		return dir.get(direction);
 	}
     
-    public HashMap<String, Room> getDirMap(){
+    public HashMap<String, Exit> getDirMap(){
     	return dir;
     }
 
     /**
-     * @param the direction and the room in that direction
-     * @param a new room in that direction from the current room
+     * @param the direction and the exit in that direction
+     * @param an exit in that direction from the current room
      */
-	public void setDir(String direction, Room room) {
-		dir.put(direction, room);
+	public void setDir(String direction, Exit exit) {
+		dir.put(direction, exit);
 	}
 	
     /**
