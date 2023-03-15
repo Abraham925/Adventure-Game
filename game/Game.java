@@ -27,10 +27,14 @@ public class Game {
          */
         private boolean over;
         
+        private Backpack inventory = new Backpack();
+        
         /**
          * Return the room in which the user is currently.
          */
         public Room getCurrentRoom() { return currentRoom; }
+        
+        public Backpack getInventory() { return inventory; }
         
         
         
@@ -39,6 +43,9 @@ public class Game {
          */
         public Game() { 
         	//starting world
+        	
+        	
+        	
         	System.out.println("You are a Galactic Federation Space TrooptroopTM on the star outpost"
         			+ "\n in Gamma Quadrant! Your commander has given you orders to explore the great unknow"
         			+ "\n and you have just bravely flown into an asteriod! You check your vital. You are not dead"

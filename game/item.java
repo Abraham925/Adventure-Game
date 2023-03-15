@@ -1,7 +1,6 @@
 package game;
 
 public interface item {
-
 	
 	public String name();
 	

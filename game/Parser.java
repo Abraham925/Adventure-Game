@@ -39,6 +39,8 @@ public class Parser {
         map.put("ls", new Look(game));
         map.put("search", new Search(game));
         map.put("help", new Help(this));
+        map.put("inventory", new Inventory(game.getInventory()));
+        map.put("i", new Inventory(game.getInventory()));
         keyboard = new Scanner(System.in);
     }
     
