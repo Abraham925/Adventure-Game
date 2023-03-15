@@ -2,10 +2,14 @@ package game;
 
 public interface Interactable {
 	
-	void unlock();
+	public void interName(String text);
 	
-	boolean isUnlocked();
+	public String name();
 	
-	void interact();
+	public void unlock();
+	
+	public boolean isUnlocked();
+	
+	public void interact();
 	
 }

@@ -84,6 +84,7 @@ public class Game {
     	
     	
     	RoomTie lever = new RoomTie("You feel the ground shake and hear a high pitched screech from far away.");
+    	lever.interName("lever");
     	blackHoleEntrance.setDir("darkness", new LockedExit(this, Blackhole, null, lever, null));
     	blackHoleEntrance.addInteractable(lever);
     	Blackhole.setDir("light", new NormalExit(this, LightSource));
@@ -93,7 +94,7 @@ public class Game {
     	Blackhole.setDir("space tear", new NormalExit(this, SpaceTear));
     	SpaceTear.setDir("blackhole", new NormalExit(this, Blackhole));
     	SpaceTear.setDir("debris", new NormalExit(this, WarpedDebris));
-    	WarpedDebris.setDir("space tear", new NormalExit(this, StarFragments));
+    	WarpedDebris.setDir("space tear", new NormalExit(this, SpaceTear));
     	WarpedDebris.setDir("distant fragments", new NormalExit(this, StarFragments));
     	
     	

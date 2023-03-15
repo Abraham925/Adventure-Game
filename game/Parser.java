@@ -59,9 +59,7 @@ public class Parser {
         room = game.getCurrentRoom();
         
         if(room.getInter().size() == 1) {
-        	map.put("use", new Use(room.getInter().get(0)));
-        }else {
-        	map.remove("use");
+        	map.put("use " + room.getInter().get(0).name(), new Use(room.getInter().get(0)));
         }
         
         if(command.equals("")) {//game just started, shows room description
@@ -80,7 +78,8 @@ public class Parser {
         		System.out.println("Nothing else exists that way.");
         	}
         }else { //command is a direction
-        	room.getDir(command).travel();
+        	map.remove("use " + room.getInter().get(0).name()); //removes mapping before switching rooms
+        	room.getDir(command).travel(); //calls travel on door
         	//game.setCurrentRoom(room);
         	System.out.println(game.getCurrentRoom().getDescription());
         }

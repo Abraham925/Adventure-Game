@@ -2,6 +2,8 @@ package game;
 
 public class RoomTie implements Interactable {
 	
+	private String name;
+	
 	private String echo;
 	
 	public RoomTie(String echo) {
@@ -16,6 +18,14 @@ public class RoomTie implements Interactable {
 
 	public boolean isUnlocked() {
 		return unlock;
+	}
+	
+	public void interName(String text) {
+		name = text;
+	}
+	
+	public String name() {
+		return name;
 	}
 	
 	public void interact() {
