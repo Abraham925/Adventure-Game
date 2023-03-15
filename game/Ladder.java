@@ -1,12 +1,12 @@
 package game;
 
-public class Ladder extends Backpack implements item {
+public class Ladder implements item {
 	
-	private boolean posession;
+	private boolean possession;
 	private String name;
 	
 	public Ladder() {
-		posession = false;
+		possession = false;
 		name = "Ladder";
 	}
 
@@ -17,16 +17,15 @@ public class Ladder extends Backpack implements item {
 
 	@Override
 	public void pickedUp() {
-		posession = true;
-		itemAcquired(name);
+		possession = true;
 
 	}
 
 
 
 	@Override
-	public boolean getPosession() {
-		return posession;
+	public boolean getPossession() {
+		return possession;
 	}
 
 

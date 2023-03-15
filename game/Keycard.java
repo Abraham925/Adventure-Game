@@ -1,12 +1,12 @@
 package game;
 
-public class Keycard extends Backpack implements item {
+public class Keycard implements item {
 	
-	private boolean posession;
+	private boolean possession;
 	private String name;
 	
 	public Keycard() {
-		posession = false;
+		possession = false;
 		name = "Keycard";
 	}
 
@@ -17,14 +17,13 @@ public class Keycard extends Backpack implements item {
 
 	@Override
 	public void pickedUp() {
-		posession = true;
-		itemAcquired(name);
+		possession = true;
 
 	}
 
 	@Override
-	public boolean getPosession() {
-		return posession;
+	public boolean getPossession() {
+		return possession;
 	}
 
 

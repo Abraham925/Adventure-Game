@@ -18,7 +18,7 @@ public class LockedExit implements Exit {
 
 	public void travel() {
 		if(item != null) {
-			if(item.getPosession()) {
+			if(item.getPossession()) {
 				game.setCurrentRoom(two);
 				if(reaction != null) {
 					System.out.println(reaction);

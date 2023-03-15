@@ -1,12 +1,12 @@
 package game;
 
-public class Crowbar extends Backpack implements item {
+public class Crowbar implements item {
 	
-	private boolean posession;
+	private boolean possession;
 	private String name;
 	
 	public Crowbar() {
-		posession = false;
+		possession = false;
 		name = "Crowbar";
 	}
 
@@ -17,16 +17,15 @@ public class Crowbar extends Backpack implements item {
 
 	@Override
 	public void pickedUp() {
-		posession = true;
-		itemAcquired(name);
+		possession = true;
 
 	}
 
 
 
 	@Override
-	public boolean getPosession() {
-		return posession;
+	public boolean getPossession() {
+		return possession;
 	}
 
 
