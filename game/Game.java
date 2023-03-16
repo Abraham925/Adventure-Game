@@ -104,7 +104,6 @@ public class Game {
         blackHoleEntrance.setDir("darkness", new NormalExit(this, Blackhole));
         //black hole end
         
-        /*
          
         //space station begin
         Room hangar = new Room("You find yourself in a large landing bay. Something seems off. To your left is a door that say MAINTINANCE. "
@@ -112,9 +111,9 @@ public class Game {
         Room maintenance = new Room("You find yourself in a small room with scattered tools and parts. Something is sparking.");
         Room hallwayEntrance = new Room("You are in a hallway. In the darkness a light flickers off to your right.");
         //setting up hangar and maintenance
-        hangar.setDir("left", maintenance);
-        hangar.setDir("hallway", hallwayEntrance);
-        maintenance.setDir("exit", hangar);
+        hangar.setDir("left", new NormalExit(this, maintenance));
+        hangar.setDir("hallway", new NormalExit(this, hallwayEntrance));
+        maintenance.setDir("exit", new NormalExit(this, hangar));
         //vents
         Room hallwaySouthWest = new Room("To your right is another hallway. Something is dripping from a vent above you.");
         Room ventSouthWest = new Room("Everything is dark. Whatever was dripping is covering the walls of the vent. It smells like iron.");
@@ -124,21 +123,21 @@ public class Game {
         		+ "All of a sudden it screeches and lunges at you.");
         Room ventMonsterChase = new Room("You crawl as fast as you can. The banging and screeching behind you grows louder.");
         Room ventChaseEscape = new Room("The vent caves and you fall through the grate into a room with a flickering light.");
-        hallwaySouthWest.setDir("vent", ventSouthWest);
+        hallwaySouthWest.setDir("vent", new NormalExit(this, ventSouthWest));
         
-        ventSouthWest.setDir("jump down", hallwaySouthWest);
-        ventSouthWest.setDir("left", ventNorthWest);
-        ventSouthWest.setDir("right", ventSouthEast);
+        ventSouthWest.setDir("jump down", new NormalExit(this, hallwaySouthWest));
+        ventSouthWest.setDir("left", new NormalExit(this, ventNorthWest));
+        ventSouthWest.setDir("right", new NormalExit(this, ventSouthEast));
         
-        ventSouthEast.setDir("left", ventSouthWest);
-        ventSouthEast.setDir("right", ventNorthEast);
+        ventSouthEast.setDir("left", new NormalExit(this, ventSouthWest));
+        ventSouthEast.setDir("right", new NormalExit(this, ventNorthEast));
         
-        ventNorthWest.setDir("left", ventNorthEast);
-        ventNorthWest.setDir("right", ventSouthWest);
+        ventNorthWest.setDir("left", new NormalExit(this, ventNorthEast));
+        ventNorthWest.setDir("right", new NormalExit(this, ventSouthWest));
         
-        ventNorthEast.setDir("RUN.", ventMonsterChase);
-        ventMonsterChase.setDir("RUN.", ventChaseEscape);
-        ventMonsterChase.setDir("fall", hallwayEntrance);
+        ventNorthEast.setDir("RUN.", new NormalExit(this, ventMonsterChase));
+        ventMonsterChase.setDir("RUN.", new NormalExit(this, ventChaseEscape));
+        ventMonsterChase.setDir("fall", new NormalExit(this, hallwayEntrance));
         //first floor hallway
         Room hallwaySouth = new Room("You are in a dark hallway. You see the familiar light of the hangar to your left. "
         		+ "You hear a dull clang. There is a flickering light to your right."
@@ -153,33 +152,33 @@ public class Game {
         		+ "Something echos through the vents.");
         Room hallwayWest = new Room("There is something dripping off to your right. There is a room in front of you. It is all black. You feel sick.");
         
-        hallwayEntrance.setDir("hangar", hangar);
-        hallwayEntrance.setDir("left", hallwaySouthWest);
-        hallwayEntrance.setDir("right", hallwaySouth);
+        hallwayEntrance.setDir("hangar", new NormalExit(this, hangar));
+        hallwayEntrance.setDir("left", new NormalExit(this, hallwaySouthWest));
+        hallwayEntrance.setDir("right", new NormalExit(this, hallwaySouth));
         
-        hallwaySouth.setDir("left", hallwayEntrance);
-        hallwaySouth.setDir("right", hallwaySouthEast);
+        hallwaySouth.setDir("left", new NormalExit(this, hallwayEntrance));
+        hallwaySouth.setDir("right", new NormalExit(this, hallwaySouthEast));
         
-        hallwaySouthEast.setDir("left", hallwaySouth);
-        hallwaySouthEast.setDir("right", hallwayEastSouth);
+        hallwaySouthEast.setDir("left", new NormalExit(this, hallwaySouth));
+        hallwaySouthEast.setDir("right", new NormalExit(this, hallwayEastSouth));
         
-        hallwayEastSouth.setDir("left", hallwaySouth);
-        hallwayEastSouth.setDir("right", hallwayNorthEast);
+        hallwayEastSouth.setDir("left", new NormalExit(this, hallwaySouth));
+        hallwayEastSouth.setDir("right", new NormalExit(this, hallwayNorthEast));
         
-        hallwayNorthEast.setDir("left", hallwayEastSouth);
-        hallwayNorthEast.setDir("right", hallwayNorth);
+        hallwayNorthEast.setDir("left", new NormalExit(this, hallwayEastSouth));
+        hallwayNorthEast.setDir("right", new NormalExit(this, hallwayNorth));
         
-        hallwayNorth.setDir("left", hallwayNorthEast);
-        hallwayNorth.setDir("right", hallwayNorthWest);
+        hallwayNorth.setDir("left", new NormalExit(this, hallwayNorthEast));
+        hallwayNorth.setDir("right", new NormalExit(this, hallwayNorthWest));
         
-        hallwayNorthWest.setDir("left", hallwayNorth);
-        hallwayNorthWest.setDir("right", hallwayWest);
+        hallwayNorthWest.setDir("left", new NormalExit(this, hallwayNorth));
+        hallwayNorthWest.setDir("right", new NormalExit(this, hallwayWest));
         
-        hallwayWest.setDir("left", hallwayNorthWest);
-        hallwayWest.setDir("right", hallwaySouthWest);
+        hallwayWest.setDir("left", new NormalExit(this, hallwayNorthWest));
+        hallwayWest.setDir("right", new NormalExit(this, hallwaySouthWest));
         
-        hallwaySouthWest.setDir("left", hallwayWest);
-        hallwaySouthWest.setDir("right", hallwaySouth);
+        hallwaySouthWest.setDir("left", new NormalExit(this, hallwayWest));
+        hallwaySouthWest.setDir("right", new NormalExit(this, hallwaySouth));
         //first floor rooms and elevator
         Room elevatorFloor1 = new Room("Theres a panel with the numbers 1-4. There are scratch marks on the wall. "
         		+ "You feel the elevator shake a little when you step on.");
@@ -191,25 +190,25 @@ public class Game {
         Room cargoBay = new Room("You look around and see scattered boxes with belongings scattered across the ground. Can any of it be useful?");
         Room flickeringLight = new Room("You are in what seem to be baraks. Scratches mark the walls. You see a figure coughing.");
         
-        elevatorFloor1.setDir("2", elevatorFloor2);
-        elevatorFloor1.setDir("3", elevatorFloor3);
-        elevatorFloor1.setDir("4", elevatorFloor4);
+        elevatorFloor1.setDir("2", new NormalExit(this, elevatorFloor2));
+        elevatorFloor1.setDir("3", new NormalExit(this, elevatorFloor3));
+        elevatorFloor1.setDir("4", new NormalExit(this, elevatorFloor4));
         
-        elevatorFloor2.setDir("1", elevatorFloor1);
-        elevatorFloor2.setDir("3", elevatorFloor3);
-        elevatorFloor2.setDir("4", elevatorFloor4);
+        elevatorFloor2.setDir("1", new NormalExit(this, elevatorFloor1));
+        elevatorFloor2.setDir("3", new NormalExit(this, elevatorFloor3));
+        elevatorFloor2.setDir("4", new NormalExit(this, elevatorFloor4));
         
-        elevatorFloor3.setDir("1", elevatorFloor1);
-        elevatorFloor3.setDir("2", elevatorFloor2);
-        elevatorFloor3.setDir("4", elevatorFloor4);
+        elevatorFloor3.setDir("1", new NormalExit(this, elevatorFloor1));
+        elevatorFloor3.setDir("2", new NormalExit(this, elevatorFloor2));
+        elevatorFloor3.setDir("4", new NormalExit(this, elevatorFloor4));
         
-        elevatorFloor4.setDir("1", elevatorFloor1);
-        elevatorFloor4.setDir("2", elevatorFloor2);
-        elevatorFloor4.setDir("3", elevatorFloor3);
+        elevatorFloor4.setDir("1", new NormalExit(this, elevatorFloor1));
+        elevatorFloor4.setDir("2", new NormalExit(this, elevatorFloor2));
+        elevatorFloor4.setDir("3", new NormalExit(this, elevatorFloor3));
         
-        hallwayNorth.setDir("elevator", elevatorFloor1);
-        hallwaySouth.setDir("cargo", cargoBay);
-        hallwayEastSouth.setDir("light", flickeringLight);
+        hallwayNorth.setDir("elevator", new NormalExit(this, elevatorFloor1));
+        hallwaySouth.setDir("cargo", new NormalExit(this, cargoBay));
+        hallwayEastSouth.setDir("light", new NormalExit(this, flickeringLight));
         
         //basement
         Room basementCollapse = new Room ("Around you is a labryth of pipes and machines, the inner workings of the ship. "
@@ -222,14 +221,20 @@ public class Game {
         		+ "All the pipes around you seem to be leading into it.");
         Room basementBottomLeft = new Room ("There are some slabs slightly protruding from the wall, just barely enough to see."
         		+ " They seem to lead to a trapdoor.");
-        basementCollapse.setDir("left", basementBottomLeft);
-        basementCollapse.setDir("right", basementTopRight);
-        basementBottomLeft.setDir("left", basementBottomRight);
-        basementBottomLeft.setDir("right", basementCollapse);
-        basementBottomRight.setDir("left", basementTopRight);
-        basementBottomRight.setDir("right", basementBottomLeft);
-        basementTopRight.setDir("left", basementCollapse);
-        basementTopRight.setDir("right", basementBottomRight);
+        
+        basementCollapse.setDir("left", new NormalExit(this, basementBottomLeft));
+        basementCollapse.setDir("right", new NormalExit(this, basementTopRight));
+        
+        	//MAKE LOCKED DOOR LEADING TO HANGAR
+        basementBottomLeft.setDir("left", new NormalExit(this, basementBottomRight));
+        basementBottomLeft.setDir("right", new NormalExit(this, basementCollapse));
+        
+        basementBottomRight.setDir("left", new NormalExit(this, basementTopRight));
+        basementBottomRight.setDir("right", new NormalExit(this, basementBottomLeft));
+        
+        	//MAKE LEVER IN FORM OF BUTTON LABELED HANGAR
+        basementTopRight.setDir("left", new NormalExit(this, basementCollapse));
+        basementTopRight.setDir("right", new NormalExit(this, basementBottomRight));
         
         //floor 2
         Room floor2Entrance = new Room ("Ahead of you you see a large bay window and some equipment.");
@@ -245,12 +250,43 @@ public class Game {
         Room floor2Bio = new Room ("You are surrounded by plants from all over the galaxy, and containers with some fruits"
         		+ " still left in them.");
         
+        elevatorFloor2.setDir("forward", new NormalExit(this, floor2Entrance));
+        
+        floor2Entrance.setDir("forward", new NormalExit(this, floor2SouthEast));
+        floor2Entrance.setDir("back", new NormalExit(this, elevatorFloor2));
+        
+        floor2SouthEast.setDir("forward", new NormalExit(this, floor2NorthEast));
+        floor2SouthEast.setDir("left", new NormalExit(this, floor2SouthWest));
+        floor2SouthEast.setDir("back", new NormalExit(this, floor2Entrance));
+        
+        floor2NorthEast.setDir("forward", new NormalExit(this, floor2Hall));
+        floor2NorthEast.setDir("left", new NormalExit(this, floor2NorthWest));
+        floor2NorthEast.setDir("back", new NormalExit(this, floor2SouthEast));
+        
+        floor2Hall.setDir("forward", new NormalExit(this, floor2Turret));
+        floor2Hall.setDir("back", new NormalExit(this, floor2NorthEast));
+        	//MAKE INTERACTABLE OR MAYBE ITEM
+        floor2Turret.setDir("back", new NormalExit(this, floor2Hall));
+        
+        floor2SouthWest.setDir("forward", new NormalExit(this, floor2West));
+        floor2SouthWest.setDir("right", new NormalExit(this, floor2SouthEast));
+        
+        floor2West.setDir("forward", new NormalExit(this, floor2NorthEast));
+        floor2West.setDir("door", new NormalExit(this, floor2Bio));
+        floor2West.setDir("back", new NormalExit(this, floor2SouthEast));
+        
+        	//MAKE ITEM
+        floor2Bio.setDir("back", new NormalExit(this, floor2West));
+        
+        floor2NorthWest.setDir("right", new NormalExit(this, floor2NorthEast));
+        floor2NorthWest.setDir("back", new NormalExit(this, floor2West));
+        
         //floor 3
         Room elevatorExitF3 = new Room ("You see a hallway illuminated by a red light eminating from the end of the hall."
         		+ "You see the elevator on the other side of the gap in the floor.");
         Room hallway1F3 = new Room ("You can vaguely make out something standing next to the red light."
         		+ "There is a door next to you.");
-        //ITEM
+        	//ITEM
         Room hallway1DoorF3 = new Room ("Inside the room there are some strange looking plants growing in glass containers."
         		+ "Most of the containers are broken or shattered, but one is still intact.");
         Room hallway2F3 = new Room ("The red light seems to be coming from an panel in a room at the end of the hall."
@@ -263,11 +299,53 @@ public class Game {
         		+ "it begins to hurt. You feel the stange urge to reach your hand out...");
         Room hallway3F3 = new Room ("You see something flashing next to the red light on the panel. "
         		+ "The form isn't moving.");
+        Room maproomF3 = new Room ("In front of you is a large, flat screen that seems to be showing the galaxy"
+        		+ " the station is in. There's a flashing icon next to a large red dot illuminated on the screen. "
+        		+ "There is someone slumped over next to it. You look out the window and see a wierd distortion in the far off distance...");
+        elevatorFloor3.setDir("forward", new NormalExit(this, elevatorExitF3));
         
+        elevatorExitF3.setDir("forward", new NormalExit(this, hallway1F3));
+        elevatorExitF3.setDir("back", new NormalExit(this, elevatorFloor3));
         
+        hallway1F3.setDir("forward", new NormalExit(this, hallway2F3));	
+        hallway1F3.setDir("back", new NormalExit(this, elevatorExitF3));	
+        hallway1F3.setDir("door", new NormalExit(this, hallway1DoorF3));
+        
+        hallway2F3.setDir("forward", new NormalExit(this, hallway3F3));
+        hallway2F3.setDir("back", new NormalExit(this, hallway1F3));	
+        hallway2F3.setDir("right", new NormalExit(this, blackhall1));	
+        
+        hallway3F3.setDir("forward", new NormalExit(this, maproomF3));
+        hallway3F3.setDir("back", new NormalExit(this, hallway2F3));
+        
+        	//MAKE INTERACTION WITH MAP!!
+        maproomF3.setDir("back", new NormalExit(this, hallway3F3));
+        
+        blackhall1.setDir("right", new NormalExit(this, blackhall2));	
+        blackhall1.setDir("left", new NormalExit(this, hallway2F3));	
+        
+        blackhall2.setDir("right", new NormalExit(this, blackhall3));	
+        blackhall2.setDir("left", new NormalExit(this, blackhall1));
+        
+        blackhall3.setDir("forward", new NormalExit(this, blackholeWarpdrive));	
+        blackhall3.setDir("left", new NormalExit(this, blackhall2));
+        
+        blackholeWarpdrive.setDir("forward", new NormalExit(this, Blackhole));
+        blackholeWarpdrive.setDir("hand", new NormalExit(this, Blackhole));
+        	//do I make there be no option to turn back??
+        blackholeWarpdrive.setDir("back", new NormalExit(this, blackhall3));
+        
+        //floor 4
+        	//INTERACTION WITH CAPTAIN AND ITEM (INTERACTION WITH OTHER EQUITMENT IN ROOM?)
+        Room commandCenter = new Room ("You see a large window looking into the vast depth of space. There is someone "
+        		+ "on the ground in a white uniform bleeding with his hand over his heart. You look at the many consoles"
+        		+ " and equitment and assess you are in the command center.");
+        
+        elevatorFloor4.setDir("forward", new NormalExit(this, commandCenter));
+        	//POSSIBLY MAKE COMMAND CENTER LOCKED AT FIRST? NEED CARGO BAY EQUITMENT TO BUST DOWN DOOR OR ACCESS CODE?
+        commandCenter.setDir("back", new NormalExit(this, elevatorFloor4));
         //space station end
 
-         */
         
         currentRoom = blackHoleEntrance;
         
