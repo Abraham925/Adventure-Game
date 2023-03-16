@@ -14,6 +14,7 @@ public class Chest implements Interactable{
 		this.key = key;
 		this.item = item;
 		this.name = name;
+		this.interaction = interaction;
 	}
 	
     public String getItem() { //name of item
@@ -38,12 +39,25 @@ public class Chest implements Interactable{
 	public void interName(String text) {
 		name = text;
 	}
+	
 	public String name() {
 		return name;
 	}
+	
 	@Override
 	public void interact() {
-		System.out.println(interaction);
+		if(key == null || key.getPossession()) {
+			if(!opened) {
+				item.pickedUp();
+				unlock();
+				System.out.println(interaction);
+				System.out.println("You scavenged the chest and discovered a " + item.name());
+			}else {
+				System.out.println("There's nothing interesting about the empty chest");
+			}
+		}else {
+			System.out.println("A lock prevents it from being opened up. Maybe you should look around for it.");
+		}
 	}
 	
 }

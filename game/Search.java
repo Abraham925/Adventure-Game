@@ -12,14 +12,25 @@ public class Search implements Command {
 
 	public void run() {
 		room = game.getCurrentRoom();
+		System.out.print("Around the room, you see a ");
 		if(room.getItems().size() != 0) {
-			System.out.print("Around the room, you see ");
 			for(int i = 0; i<room.getItems().size()-1; i+=1) {
 				System.out.print(room.getItems().get(i).name() + ", ");
 			}
-			System.out.print("and " + room.getItems().get(room.getItems().size()-1).name() + ".");
+			if(room.getItems().size() > 1) {
+				System.out.print("and ");
+			}
+			System.out.print(room.getItems().get(room.getItems().size()-1).name() + ".");
+		}else if(room.getInter().size() != 0) {
+			for(int i = 0; i<room.getInter().size()-1; i+=1) {
+				System.out.print(room.getInter().get(i).name() + ", ");
+			}
+			if(room.getInter().size() > 1) {
+				System.out.print("and ");
+			}
+			System.out.print(room.getInter().get(room.getInter().size()-1).name() + ".");
 		}else {
-			System.out.print("There are no items in the room.");
+			System.out.print("no items or interesting features in the room.");
 		}
 		System.out.println();
 	}

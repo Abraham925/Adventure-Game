@@ -61,7 +61,11 @@ public class Parser {
         room = game.getCurrentRoom();
         
         if(room.getInter().size() == 1) {
-        	map.put("use " + room.getInter().get(0).name(), new Use(room.getInter().get(0)));
+        	if(room.getInter().get(0).name().equals("chest")) {
+        		map.put("open " + room.getInter().get(0).name(), new OpenChest(room.getInter().get(0)));
+        	}else {
+        		map.put("use " + room.getInter().get(0).name(), new Use(room.getInter().get(0)));
+        	}
         }
         
         //System.out.println("ITEMS SIZE: " + room.getItems().size());
@@ -91,8 +95,12 @@ public class Parser {
         	}
         }else { //command is a direction
         	if(room.getInter().size() == 1) {
-        		map.remove("use " + room.getInter().get(0).name()); //removes mapping before switching rooms
-        	}
+        		if(room.getInter().get(0).name().equals("chest")) {
+            		map.remove("open " + room.getInter().get(0).name());
+            	}else {
+            		map.remove("use " + room.getInter().get(0).name()); //removes mapping before switching rooms
+            	}
+            }
         	for(int i = 0; i<room.getItems().size(); i+=1) {
             	map.remove("pick up " + room.getItems().get(i).name());
             }

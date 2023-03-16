@@ -34,6 +34,9 @@ public class Game {
     	private Crowbar crowbar = new Crowbar();
     	private Keycard keycard = new Keycard();
     	private Ladder ladder = new Ladder();
+    	
+    	private Chest blackholeChest = new Chest(null, crowbar, "chest", "The abscence of sound is the most shocking.");
+    	
         private Backpack inventory = new Backpack(hyperdrive, proplusionsystem, guidancesystem, gloves, crowbar, keycard, ladder);
         
         /**
@@ -76,9 +79,10 @@ public class Game {
         Room redSunEntrance = new Room("Basement");
         Room deathShipEntrance = new Room("Bedroom 1st Floor");
         Room blackHoleEntrance = new Room("Seems impossibly dark in that direction...");
-        blackHoleEntrance.addItem(gloves);
-        blackHoleEntrance.addItem(crowbar);
-        blackHoleEntrance.addItem(ladder);
+        //blackHoleEntrance.addItem(gloves);
+        //blackHoleEntrance.addItem(crowbar);
+        //blackHoleEntrance.addItem(ladder);
+        blackHoleEntrance.addInteractable(blackholeChest);
         
         
         //black hole start
@@ -93,7 +97,7 @@ public class Game {
     	
     	RoomTie lever = new RoomTie("You feel the ground shake and hear a high pitched screech from far away.");
     	lever.interName("lever");
-    	blackHoleEntrance.setDir("darkness", new LockedExit(this, Blackhole, gloves, null, null));
+    	blackHoleEntrance.setDir("darkness", new LockedExit(this, Blackhole, crowbar, null, null));
     	//blackHoleEntrance.addInteractable(lever);
     	Blackhole.setDir("light", new NormalExit(this, LightSource));
     	LightSource.setDir("back", new NormalExit(this, Blackhole));
