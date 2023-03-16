@@ -1,12 +1,12 @@
 package game;
 
-public class ProplusionSystem extends Backpack implements item {
+public class ProplusionSystem implements item {
 	
-	private boolean posession;
+	private boolean possession;
 	private String name;
 	
 	public ProplusionSystem() {
-		posession = false;
+		possession = false;
 		name = "Proplusion System";
 	}
 
@@ -17,15 +17,14 @@ public class ProplusionSystem extends Backpack implements item {
 
 	@Override
 	public void pickedUp() {
-		posession = true;
-		itemAcquired(name);
+		possession = true;
 
 	}
 
 
 	@Override
-	public boolean getPosession() {
-		return posession;
+	public boolean getPossession() {
+		return possession;
 	}
 
 

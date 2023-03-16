@@ -6,7 +6,7 @@ public interface item {
 	
 	public void pickedUp();
 	
-	public boolean getPosession();
+	public boolean getPossession();
 	
 }
 

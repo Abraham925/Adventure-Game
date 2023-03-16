@@ -1,12 +1,12 @@
 package game;
 
-public class GuidanceSystem extends Backpack implements item {
+public class GuidanceSystem implements item {
 	
-	private boolean posession;
+	private boolean possession;
 	private String name;
 	
 	public GuidanceSystem() {
-		posession = false;
+		possession = false;
 		name = "Guidance System";
 	}
 
@@ -17,15 +17,14 @@ public class GuidanceSystem extends Backpack implements item {
 
 	@Override
 	public void pickedUp() {
-		posession = true;
-		itemAcquired(name);
+		possession = true;
 
 	}
 
 
 	@Override
-	public boolean getPosession() {
-		return posession;
+	public boolean getPossession() {
+		return possession;
 	}
 
 

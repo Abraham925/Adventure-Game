@@ -1,12 +1,12 @@
 package game;
 
-public class Gloves extends Backpack implements item {
+public class Gloves implements item {
 	
-	private boolean posession;
+	private boolean possession;
 	private String name;
 	
 	public Gloves() {
-		posession = false;
+		possession = false;
 		name = "Gloves";
 	}
 
@@ -17,15 +17,13 @@ public class Gloves extends Backpack implements item {
 
 	@Override
 	public void pickedUp() {
-		posession = true;
-		itemAcquired(name);
-
+		possession = true;
 
 	}
 
 	@Override
-	public boolean getPosession() {
-		return posession;
+	public boolean getPossession() {
+		return possession;
 	}
 
 

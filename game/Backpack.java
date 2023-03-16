@@ -1,43 +1,58 @@
 package game;
 
 public class Backpack {
-	private boolean hyperdrive;
-	private boolean proplusionsystem;
-	private boolean guidancesystem;
-	private boolean gloves;
-	private boolean crowbar;
-	private boolean keycard;
-	private boolean ladder;
+	private item hyperdrive;
+	private item proplusionsystem;
+	private item guidancesystem;
+	private item gloves;
+	private item crowbar;
+	private item keycard;
+	private item ladder;
+
 
 
 
 
 	
 	public Backpack() {
-		hyperdrive = false;
-		proplusionsystem = false;
-		guidancesystem = false;
-		gloves = false;
-		crowbar = false;
-		keycard = false;
-		ladder = false;
+		this.hyperdrive = hyperdrive;
+		this.proplusionsystem = proplusionsystem;
+		this.guidancesystem = guidancesystem;
+		this.gloves = gloves;
+		this.crowbar = crowbar;
+		this.keycard = keycard;
+		this.ladder = ladder;
+		
 	}
 	
-	public void itemAcquired(String x) {
-		switch(x) {
-			case("Hyperdive"): hyperdrive = true; break;
-			case("Proplusion System"): proplusionsystem = true; break;
-			case("Guidance System"): guidancesystem = true; break;
-			case("gloves"): gloves = true; break;
-			case("crowbar"): gloves = true; break;
-			case("keycard"): gloves = true; break;
-			case("ladder"): gloves = true; break;
-			
+	public void itemAcquired() {
+		System.out.println("Items in your inventory:");
+		if(hyperdrive.getPosession()) {
+			System.out.println("Hyperdrive");
 		}
+		if(proplusionsystem.getPosession()) {
+			System.out.println("Proplusion System");
+		}
+		if(guidancesystem.getPosession()) {
+			System.out.println("Guidance System");
+		}
+		if(gloves.getPosession()) {
+			System.out.println("Gloves");
+		}
+		if(crowbar.getPosession()) {
+			System.out.println("Crowbar");
+		}
+		if(keycard.getPosession()) {
+			System.out.println("Keycard");
+		}
+		if(ladder.getPosession()) {
+			System.out.println("Ladder");
+		}
+		
 
 	}
 	public boolean allItemsAcquired() {
-		if(hyperdrive&&proplusionsystem&&guidancesystem) {
+		if(hyperdrive.getPosession()&&proplusionsystem.getPosession()&&guidancesystem.getPosession()) {
 			return true;
 		}
 		return false;
