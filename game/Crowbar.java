@@ -7,7 +7,7 @@ public class Crowbar implements item {
 	
 	public Crowbar() {
 		possession = false;
-		name = "Crowbar";
+		name = "crowbar";
 	}
 
 	@Override

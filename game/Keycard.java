@@ -7,7 +7,7 @@ public class Keycard implements item {
 	
 	public Keycard() {
 		possession = false;
-		name = "Keycard";
+		name = "keycard";
 	}
 
 	@Override

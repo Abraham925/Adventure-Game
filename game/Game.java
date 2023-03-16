@@ -27,7 +27,14 @@ public class Game {
          */
         private boolean over;
         
-        private Backpack inventory = new Backpack();
+    	private Hyperdrive hyperdrive = new Hyperdrive();
+    	private ProplusionSystem proplusionsystem = new ProplusionSystem();
+    	private GuidanceSystem guidancesystem = new GuidanceSystem();
+    	private Gloves gloves = new Gloves();
+    	private Crowbar crowbar = new Crowbar();
+    	private Keycard keycard = new Keycard();
+    	private Ladder ladder = new Ladder();
+        private Backpack inventory = new Backpack(hyperdrive, proplusionsystem, guidancesystem, gloves, crowbar, keycard, ladder);
         
         /**
          * Return the room in which the user is currently.
@@ -68,16 +75,10 @@ public class Game {
         Room swirlingMassEntrance = new Room("Bathroom");
         Room redSunEntrance = new Room("Basement");
         Room deathShipEntrance = new Room("Bedroom 1st Floor");
-        Room blackHoleEntrance = new Room("Seems impossibly dark in that direction...");    
-        Gloves gloves = new Gloves();
-        gloves.name();
-        TestItem test2 = new TestItem();
-        test2.itemName("test2");
-        TestItem test3 = new TestItem();
-        test3.itemName("test3");
+        Room blackHoleEntrance = new Room("Seems impossibly dark in that direction...");
         blackHoleEntrance.addItem(gloves);
-        blackHoleEntrance.addItem(test2);
-        blackHoleEntrance.addItem(test3);
+        blackHoleEntrance.addItem(crowbar);
+        blackHoleEntrance.addItem(ladder);
         
         
         //black hole start

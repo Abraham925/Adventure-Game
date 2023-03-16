@@ -64,6 +64,16 @@ public class Parser {
         	map.put("use " + room.getInter().get(0).name(), new Use(room.getInter().get(0)));
         }
         
+        //System.out.println("ITEMS SIZE: " + room.getItems().size());
+        
+        for(int i = 0; i<room.getItems().size(); i+=1) {
+        	map.put("pick up " + room.getItems().get(i).name(), new PickUpItem(room.getItems().get(i)));
+        }
+        /*
+        if(room.getItems().size() == 1) {
+        	map.put("pick up " + room.getItems().get(0).name(), new PickUpItem(room.getItems().get(0)));
+        }*/
+        
         if(command.equals("")) {//game just started, shows room description
         	System.out.println(room.getDescription());
         }
@@ -83,6 +93,13 @@ public class Parser {
         	if(room.getInter().size() == 1) {
         		map.remove("use " + room.getInter().get(0).name()); //removes mapping before switching rooms
         	}
+        	for(int i = 0; i<room.getItems().size(); i+=1) {
+            	map.remove("pick up " + room.getItems().get(i).name());
+            }
+        	/*
+        	if(room.getItems().size() == 1) {
+            	map.remove("pick up " + room.getItems().get(0).name());
+            }*/
         	room.getDir(command).travel(); //calls travel on door
         	//game.setCurrentRoom(room);
         	System.out.println(game.getCurrentRoom().getDescription());

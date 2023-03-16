@@ -7,7 +7,7 @@ public class Ladder implements item {
 	
 	public Ladder() {
 		possession = false;
-		name = "Ladder";
+		name = "ladder";
 	}
 
 	@Override
@@ -20,8 +20,6 @@ public class Ladder implements item {
 		possession = true;
 
 	}
-
-
 
 	@Override
 	public boolean getPossession() {

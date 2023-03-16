@@ -8,6 +8,16 @@ public class Backpack {
 	private item crowbar;
 	private item keycard;
 	private item ladder;
+	
+	public Backpack(item hyperdrive, item proplusionsystem, item guidancesystem, item gloves, item crowbar, item keycard, item ladder) {
+		this.hyperdrive = hyperdrive;
+		this.proplusionsystem = proplusionsystem;
+		this.guidancesystem = guidancesystem;
+		this.gloves = gloves;
+		this.crowbar = crowbar;
+		this.keycard = keycard;
+		this.ladder = ladder;
+	}
 
 	
 	public void itemAcquired() {
@@ -33,7 +43,7 @@ public class Backpack {
 		if(ladder.getPossession()) {
 			System.out.println("Ladder");
 		}
-		
+		System.out.println();
 
 	}
 	public boolean allItemsAcquired() {

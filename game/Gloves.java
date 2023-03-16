@@ -6,7 +6,7 @@ public class Gloves implements item {
 	private String name;
 	
 	public Gloves() {
-		possession = true;
+		possession = false;
 		name = "gloves";
 	}
 
