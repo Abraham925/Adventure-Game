@@ -9,50 +9,35 @@ public class Backpack {
 	private item keycard;
 	private item ladder;
 
-
-
-
-
-	
-	public Backpack() {
-		this.hyperdrive = hyperdrive;
-		this.proplusionsystem = proplusionsystem;
-		this.guidancesystem = guidancesystem;
-		this.gloves = gloves;
-		this.crowbar = crowbar;
-		this.keycard = keycard;
-		this.ladder = ladder;
-		
-	}
 	
 	public void itemAcquired() {
 		System.out.println("Items in your inventory:");
-		if(hyperdrive.getPosession()) {
+		if(hyperdrive.getPossession()) {
 			System.out.println("Hyperdrive");
 		}
-		if(proplusionsystem.getPosession()) {
+		if(proplusionsystem.getPossession()) {
 			System.out.println("Proplusion System");
 		}
-		if(guidancesystem.getPosession()) {
+		if(guidancesystem.getPossession()) {
 			System.out.println("Guidance System");
 		}
-		if(gloves.getPosession()) {
+		if(gloves.getPossession()) {
 			System.out.println("Gloves");
 		}
-		if(crowbar.getPosession()) {
+		if(crowbar.getPossession()) {
 			System.out.println("Crowbar");
 		}
-		if(keycard.getPosession()) {
+		if(keycard.getPossession()) {
 			System.out.println("Keycard");
 		}
-		if(ladder.getPosession()) {
+		if(ladder.getPossession()) {
 			System.out.println("Ladder");
 		}
 		
 
 	}
 	public boolean allItemsAcquired() {
-		if(hyperdrive.getPosession()&&proplusionsystem.getPosession()&&guidancesystem.getPosession()) {
+		if(hyperdrive.getPossession()&&proplusionsystem.getPossession()&&guidancesystem.getPossession()) {
 			return true;
 		}
 		return false;
