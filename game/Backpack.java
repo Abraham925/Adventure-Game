@@ -1,15 +1,15 @@
 package game;
 
 public class Backpack {
-	private item hyperdrive;
-	private item proplusionsystem;
-	private item guidancesystem;
-	private item gloves;
-	private item crowbar;
-	private item keycard;
-	private item ladder;
+	private Item hyperdrive;
+	private Item proplusionsystem;
+	private Item guidancesystem;
+	private Item gloves;
+	private Item crowbar;
+	private Item keycard;
+	private Item ladder;
 	
-	public Backpack(item hyperdrive, item proplusionsystem, item guidancesystem, item gloves, item crowbar, item keycard, item ladder) {
+	public Backpack(Item hyperdrive, Item proplusionsystem, Item guidancesystem, Item gloves, Item crowbar, Item keycard, Item ladder) {
 		this.hyperdrive = hyperdrive;
 		this.proplusionsystem = proplusionsystem;
 		this.guidancesystem = guidancesystem;

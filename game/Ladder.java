@@ -1,6 +1,6 @@
 package game;
 
-public class Ladder implements item {
+public class Ladder implements Item {
 	
 	private boolean possession;
 	private String name;

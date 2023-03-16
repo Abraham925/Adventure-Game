@@ -33,7 +33,7 @@ public class Search implements Command {
 			}
 			System.out.print(room.getInter().get(room.getInter().size()-1).name() + ". ");
 		}else {
-			System.out.print("no items or interesting features in the room.");
+			System.out.print("There are no items or interesting features in the room.");
 		}
 		System.out.println();
 	}

@@ -1,6 +1,6 @@
 package game;
 
-public class Hyperdrive implements item{
+public class Hyperdrive implements Item{
 	
 	private boolean possession;
 	private String name;

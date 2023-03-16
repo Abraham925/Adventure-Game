@@ -1,6 +1,6 @@
 package game;
 
-public class Gloves implements item {
+public class Gloves implements Item {
 	
 	private boolean possession;
 	private String name;

@@ -4,13 +4,13 @@ public class Chest implements Interactable{
 	
 	private String name;
 	private boolean opened;
-	private item key;
-	private item item;
+	private Item key;
+	private Item item;
 	private String interaction;
 	private String desc;
 	
 
-	public Chest(item key, item item, String name, String interaction) {		
+	public Chest(Item key, Item item, String name, String interaction) {		
 		opened = false;
 		desc = "chest";
 		this.key = key;

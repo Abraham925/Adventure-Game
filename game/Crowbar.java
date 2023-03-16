@@ -1,6 +1,6 @@
 package game;
 
-public class Crowbar implements item {
+public class Crowbar implements Item {
 	
 	private boolean possession;
 	private String name;

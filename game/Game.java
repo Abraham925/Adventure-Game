@@ -28,7 +28,7 @@ public class Game {
         private boolean over;
         
     	private Hyperdrive hyperdrive = new Hyperdrive();
-    	private ProplusionSystem proplusionsystem = new ProplusionSystem();
+    	private PropulsionSystem proplusionsystem = new PropulsionSystem();
     	private GuidanceSystem guidancesystem = new GuidanceSystem();
     	private Gloves gloves = new Gloves();
     	private Crowbar crowbar = new Crowbar();

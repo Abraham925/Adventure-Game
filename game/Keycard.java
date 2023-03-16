@@ -1,6 +1,6 @@
 package game;
 
-public class Keycard implements item {
+public class Keycard implements Item {
 	
 	private boolean possession;
 	private String name;

@@ -1,6 +1,6 @@
 package game;
 
-public class TestItem implements item {
+public class TestItem implements Item {
 	
 	private String name;
 	private String desc;

@@ -2,9 +2,9 @@ package game;
 
 public class PickUpItem implements Command {
 	
-	private item item;
+	private Item item;
 	
-	public PickUpItem(item item) {
+	public PickUpItem(Item item) {
 		this.item = item;
 	}
 

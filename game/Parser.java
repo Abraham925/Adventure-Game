@@ -62,7 +62,7 @@ public class Parser {
         
         for(int i = 0; i<room.getInter().size(); i+=1) {
         //if(room.getInter().size() == 1) {
-        	if(room.getInter().get(0).description().equals("chest")) {
+        	if(room.getInter().get(i).description().equals("chest")) {
         		map.put("open " + room.getInter().get(i).name(), new OpenChest(room.getInter().get(i)));
         	}else {
         		map.put("use " + room.getInter().get(i).name(), new Use(room.getInter().get(i)));

@@ -1,6 +1,6 @@
 package game;
 
-public class GuidanceSystem implements item {
+public class GuidanceSystem implements Item {
 	
 	private boolean possession;
 	private String name;
