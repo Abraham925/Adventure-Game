@@ -11,6 +11,7 @@ public class Search implements Command {
 	}
 
 	public void run() {
+		room = game.getCurrentRoom();
 		if(room.getItems().size() != 0) {
 			System.out.print("Around the room, you see ");
 			for(int i = 0; i<room.getItems().size()-1; i+=1) {

@@ -80,7 +80,9 @@ public class Parser {
         		System.out.println("Nothing else exists that way.");
         	}
         }else { //command is a direction
-        	map.remove("use " + room.getInter().get(0).name()); //removes mapping before switching rooms
+        	if(room.getInter().size() == 1) {
+        		map.remove("use " + room.getInter().get(0).name()); //removes mapping before switching rooms
+        	}
         	room.getDir(command).travel(); //calls travel on door
         	//game.setCurrentRoom(room);
         	System.out.println(game.getCurrentRoom().getDescription());

@@ -6,8 +6,8 @@ public class Gloves implements item {
 	private String name;
 	
 	public Gloves() {
-		possession = false;
-		name = "Gloves";
+		possession = true;
+		name = "gloves";
 	}
 
 	@Override

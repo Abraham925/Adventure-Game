@@ -20,7 +20,7 @@ public class TestItem implements item {
 	}
 
 	@Override
-	public boolean getPosession() {
+	public boolean getPossession() {
 		// TODO Auto-generated method stub
 		return true;
 	}

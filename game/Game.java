@@ -69,13 +69,13 @@ public class Game {
         Room redSunEntrance = new Room("Basement");
         Room deathShipEntrance = new Room("Bedroom 1st Floor");
         Room blackHoleEntrance = new Room("Seems impossibly dark in that direction...");    
-        TestItem test1 = new TestItem();
-        test1.itemName("test1");
+        Gloves gloves = new Gloves();
+        gloves.name();
         TestItem test2 = new TestItem();
         test2.itemName("test2");
         TestItem test3 = new TestItem();
         test3.itemName("test3");
-        blackHoleEntrance.addItem(test1);
+        blackHoleEntrance.addItem(gloves);
         blackHoleEntrance.addItem(test2);
         blackHoleEntrance.addItem(test3);
         
@@ -92,8 +92,8 @@ public class Game {
     	
     	RoomTie lever = new RoomTie("You feel the ground shake and hear a high pitched screech from far away.");
     	lever.interName("lever");
-    	blackHoleEntrance.setDir("darkness", new LockedExit(this, Blackhole, null, lever, null));
-    	blackHoleEntrance.addInteractable(lever);
+    	blackHoleEntrance.setDir("darkness", new LockedExit(this, Blackhole, gloves, null, null));
+    	//blackHoleEntrance.addInteractable(lever);
     	Blackhole.setDir("light", new NormalExit(this, LightSource));
     	LightSource.setDir("back", new NormalExit(this, Blackhole));
     	Blackhole.setDir("distant fragments", new NormalExit(this, StarFragments));
