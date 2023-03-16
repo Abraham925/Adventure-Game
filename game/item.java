@@ -8,6 +8,8 @@ public interface item {
 	
 	public boolean getPossession();
 	
+	public String description();
+	
 }
 
 

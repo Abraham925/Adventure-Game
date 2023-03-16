@@ -3,9 +3,14 @@ package game;
 public class TestItem implements item {
 	
 	private String name;
+	private String desc;
 	
 	public void itemName(String name) {
 		this.name = name;
+	}
+	
+	public String description() {
+		return desc;
 	}
 
 	@Override

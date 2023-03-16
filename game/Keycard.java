@@ -4,10 +4,16 @@ public class Keycard implements item {
 	
 	private boolean possession;
 	private String name;
+	private String desc;
 	
 	public Keycard() {
-		possession = false;
+		desc = "a keycard";
 		name = "keycard";
+		possession = false;
+	}
+	
+	public String description() {
+		return desc;
 	}
 
 	@Override

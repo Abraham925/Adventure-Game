@@ -4,10 +4,16 @@ public class Ladder implements item {
 	
 	private boolean possession;
 	private String name;
+	private String desc;
 	
 	public Ladder() {
-		possession = false;
+		desc = "a ladder";
 		name = "ladder";
+		possession = false;
+	}
+	
+	public String description() {
+		return desc;
 	}
 
 	@Override

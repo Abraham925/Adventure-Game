@@ -4,10 +4,16 @@ public class ProplusionSystem implements item {
 	
 	private boolean possession;
 	private String name;
+	private String desc;
 	
 	public ProplusionSystem() {
-		possession = false;
+		desc = "a missing part: propulsion system";
 		name = "Proplusion System";
+		possession = false;
+	}
+	
+	public String description() {
+		return desc;
 	}
 
 	@Override

@@ -7,10 +7,12 @@ public class Chest implements Interactable{
 	private item key;
 	private item item;
 	private String interaction;
+	private String desc;
 	
 
 	public Chest(item key, item item, String name, String interaction) {		
 		opened = false;
+		desc = "chest";
 		this.key = key;
 		this.item = item;
 		this.name = name;
@@ -38,6 +40,10 @@ public class Chest implements Interactable{
 	
 	public void interName(String text) {
 		name = text;
+	}
+	
+	public String description() {
+		return desc;
 	}
 	
 	public String name() {

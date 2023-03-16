@@ -4,10 +4,16 @@ public class Hyperdrive implements item{
 	
 	private boolean possession;
 	private String name;
+	private String desc;
 	
 	public Hyperdrive() {
-		possession = false;
+		desc = "a missing part: hyperdrive";
 		name = "Hyperdrive";
+		possession = false;
+	}
+	
+	public String description() {
+		return desc;
 	}
 
 	@Override

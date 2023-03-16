@@ -4,10 +4,16 @@ public class Crowbar implements item {
 	
 	private boolean possession;
 	private String name;
+	private String desc;
 	
 	public Crowbar() {
-		possession = false;
+		desc = "a crowbar";
 		name = "crowbar";
+		possession = false;
+	}
+	
+	public String description() {
+		return desc;
 	}
 
 	@Override

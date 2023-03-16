@@ -60,11 +60,12 @@ public class Parser {
         // The room that the user is in.
         room = game.getCurrentRoom();
         
-        if(room.getInter().size() == 1) {
-        	if(room.getInter().get(0).name().equals("chest")) {
-        		map.put("open " + room.getInter().get(0).name(), new OpenChest(room.getInter().get(0)));
+        for(int i = 0; i<room.getInter().size(); i+=1) {
+        //if(room.getInter().size() == 1) {
+        	if(room.getInter().get(0).description().equals("chest")) {
+        		map.put("open " + room.getInter().get(i).name(), new OpenChest(room.getInter().get(i)));
         	}else {
-        		map.put("use " + room.getInter().get(0).name(), new Use(room.getInter().get(0)));
+        		map.put("use " + room.getInter().get(i).name(), new Use(room.getInter().get(i)));
         	}
         }
         
@@ -73,10 +74,6 @@ public class Parser {
         for(int i = 0; i<room.getItems().size(); i+=1) {
         	map.put("pick up " + room.getItems().get(i).name(), new PickUpItem(room.getItems().get(i)));
         }
-        /*
-        if(room.getItems().size() == 1) {
-        	map.put("pick up " + room.getItems().get(0).name(), new PickUpItem(room.getItems().get(0)));
-        }*/
         
         if(command.equals("")) {//game just started, shows room description
         	System.out.println(room.getDescription());
@@ -94,22 +91,18 @@ public class Parser {
         		System.out.println("Nothing else exists that way.");
         	}
         }else { //command is a direction
-        	if(room.getInter().size() == 1) {
+        	for(int i = 0; i<room.getInter().size(); i+=1) {
+        	//if(room.getInter().size() == 1) {
         		if(room.getInter().get(0).name().equals("chest")) {
-            		map.remove("open " + room.getInter().get(0).name());
+            		map.remove("open " + room.getInter().get(i).name());
             	}else {
-            		map.remove("use " + room.getInter().get(0).name()); //removes mapping before switching rooms
+            		map.remove("use " + room.getInter().get(i).name()); //removes mapping before switching rooms
             	}
             }
         	for(int i = 0; i<room.getItems().size(); i+=1) {
             	map.remove("pick up " + room.getItems().get(i).name());
             }
-        	/*
-        	if(room.getItems().size() == 1) {
-            	map.remove("pick up " + room.getItems().get(0).name());
-            }*/
         	room.getDir(command).travel(); //calls travel on door
-        	//game.setCurrentRoom(room);
         	System.out.println(game.getCurrentRoom().getDescription());
         }
     }

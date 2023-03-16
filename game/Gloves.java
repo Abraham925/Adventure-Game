@@ -4,10 +4,16 @@ public class Gloves implements item {
 	
 	private boolean possession;
 	private String name;
+	private String desc;
 	
 	public Gloves() {
-		possession = false;
+		desc = "a pair of gloves";
 		name = "gloves";
+		possession = false;
+	}
+	
+	public String description() {
+		return desc;
 	}
 
 	@Override

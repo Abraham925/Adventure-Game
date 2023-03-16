@@ -3,10 +3,11 @@ package game;
 public class RoomTie implements Interactable {
 	
 	private String name;
-	
 	private String echo;
+	private String desc;
 	
 	public RoomTie(String echo) {
+		desc = "switch";
 		this.echo = echo;
 	}
 	
@@ -22,6 +23,10 @@ public class RoomTie implements Interactable {
 	
 	public void interName(String text) {
 		name = text;
+	}
+	
+	public String description() {
+		return desc;
 	}
 	
 	public String name() {
