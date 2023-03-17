@@ -83,13 +83,13 @@ public class Game {
         blackHoleEntrance.addItem(crowbar);
         blackHoleEntrance.addItem(ladder);
         blackHoleEntrance.addInteractable(blackholeChest);
-        RoomTie lever = new RoomTie("You feel the ground shake and hear a high pitched screech from far away.");
-    	lever.interName("lever");
-    	RoomTie button = new RoomTie("Doorway Unlocked.");
-    	button.interName("button");
+        //RoomTie lever = new RoomTie("You feel the ground shake and hear a high pitched screech from far away.");
+    	//lever.interName("lever");
+    	//RoomTie button = new RoomTie("Doorway Unlocked.");
+    	//button.interName("button");
         
-        blackHoleEntrance.addInteractable(lever);
-        blackHoleEntrance.addInteractable(button);
+        //blackHoleEntrance.addInteractable(lever);
+        //blackHoleEntrance.addInteractable(button);
         
         //black hole start
     	Room Blackhole = new Room("Center of the black hole. You feel your lungs compressing. You have 10 turns to find the wormhole.");
@@ -102,7 +102,7 @@ public class Game {
     	
     	
     	
-    	blackHoleEntrance.setDir("darkness", new LockedExit(this, Blackhole, null, lever, null));
+    	//blackHoleEntrance.setDir("darkness", new LockedExit(this, Blackhole, null, lever, null));
     	Blackhole.setDir("light", new NormalExit(this, LightSource));
     	LightSource.setDir("back", new NormalExit(this, Blackhole));
     	Blackhole.setDir("distant fragments", new NormalExit(this, StarFragments));
@@ -245,12 +245,17 @@ public class Game {
         Room basementBottomLeft = new Room ("There are some slabs slightly protruding from the wall, just barely enough to see."
         		+ " They seem to lead to a trapdoor.");
         
+        RoomTie hangarButton = new RoomTie("You hear something rumbling to your left...", "button", basementBottomLeft, 
+        		"You see the slabs jutting out of the wall, with an open door at the top of the stair.");
+        basementTopRight.addInteractable(hangarButton);
+        
         basementCollapse.setDir("left", new NormalExit(this, basementBottomLeft));
         basementCollapse.setDir("right", new NormalExit(this, basementTopRight));
         
         	//MAKE LOCKED DOOR LEADING TO HANGAR
         basementBottomLeft.setDir("left", new NormalExit(this, basementBottomRight));
         basementBottomLeft.setDir("right", new NormalExit(this, basementCollapse));
+        basementBottomLeft.setDir("up", new LockedExit(this, hangar, null, hangarButton, null));
         
         basementBottomRight.setDir("left", new NormalExit(this, basementTopRight));
         basementBottomRight.setDir("right", new NormalExit(this, basementBottomLeft));
@@ -370,7 +375,7 @@ public class Game {
         //space station end
 
         
-        currentRoom = blackHoleEntrance;
+        currentRoom = basementBottomLeft;
 
         
         over = false;

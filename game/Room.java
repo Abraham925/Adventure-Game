@@ -77,5 +77,7 @@ public class Room {
      * Retrieve a description of this room (to the user).
      */
     public String getDescription() { return description; }
+    
+    public void setDescription(String description) { this.description = description; }
 	
 }
