@@ -2,7 +2,7 @@ package game;
 
 public class RoomTie implements Interactable {
 	
-	private String name; //what the name of the interactable
+	private String name; //the name of the interactable
 	private String echo; //text shown when interaction is made
 	private Room unlockedRoom;
 	private String newDescription;
