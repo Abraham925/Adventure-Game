@@ -60,8 +60,19 @@ public class Parser {
         // The room that the user is in.
         room = game.getCurrentRoom();
         
-        if(room.getInter().size() == 1) {
-        	map.put("use " + room.getInter().get(0).name(), new Use(room.getInter().get(0)));
+        for(int i = 0; i<room.getInter().size(); i+=1) {
+        //if(room.getInter().size() == 1) {
+        	if(room.getInter().get(i).description().equals("chest")) {
+        		map.put("open " + room.getInter().get(i).name(), new OpenChest(room.getInter().get(i)));
+        	}else {
+        		map.put("use " + room.getInter().get(i).name(), new Use(room.getInter().get(i)));
+        	}
+        }
+        
+        //System.out.println("ITEMS SIZE: " + room.getItems().size());
+        
+        for(int i = 0; i<room.getItems().size(); i+=1) {
+        	map.put("pick up " + room.getItems().get(i).name(), new PickUpItem(room.getItems().get(i)));
         }
         
         if(command.equals("")) {//game just started, shows room description
@@ -80,9 +91,18 @@ public class Parser {
         		System.out.println("Nothing else exists that way.");
         	}
         }else { //command is a direction
-        	map.remove("use " + room.getInter().get(0).name()); //removes mapping before switching rooms
+        	for(int i = 0; i<room.getInter().size(); i+=1) {
+        	//if(room.getInter().size() == 1) {
+        		if(room.getInter().get(0).name().equals("chest")) {
+            		map.remove("open " + room.getInter().get(i).name());
+            	}else {
+            		map.remove("use " + room.getInter().get(i).name()); //removes mapping before switching rooms
+            	}
+            }
+        	for(int i = 0; i<room.getItems().size(); i+=1) {
+            	map.remove("pick up " + room.getItems().get(i).name());
+            }
         	room.getDir(command).travel(); //calls travel on door
-        	//game.setCurrentRoom(room);
         	System.out.println(game.getCurrentRoom().getDescription());
         }
     }

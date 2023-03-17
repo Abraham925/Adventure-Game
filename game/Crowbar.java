@@ -1,13 +1,19 @@
 package game;
 
-public class Crowbar implements item {
+public class Crowbar implements Item {
 	
 	private boolean possession;
 	private String name;
+	private String desc;
 	
 	public Crowbar() {
+		desc = "a crowbar";
+		name = "crowbar";
 		possession = false;
-		name = "Crowbar";
+	}
+	
+	public String description() {
+		return desc;
 	}
 
 	@Override

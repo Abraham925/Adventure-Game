@@ -1,13 +1,19 @@
 package game;
 
-public class Gloves implements item {
+public class Gloves implements Item {
 	
 	private boolean possession;
 	private String name;
+	private String desc;
 	
 	public Gloves() {
+		desc = "a pair of gloves";
+		name = "gloves";
 		possession = false;
-		name = "Gloves";
+	}
+	
+	public String description() {
+		return desc;
 	}
 
 	@Override

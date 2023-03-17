@@ -1,13 +1,23 @@
 package game;
 
 public class Backpack {
-	private item hyperdrive;
-	private item proplusionsystem;
-	private item guidancesystem;
-	private item gloves;
-	private item crowbar;
-	private item keycard;
-	private item ladder;
+	private Item hyperdrive;
+	private Item proplusionsystem;
+	private Item guidancesystem;
+	private Item gloves;
+	private Item crowbar;
+	private Item keycard;
+	private Item ladder;
+	
+	public Backpack(Item hyperdrive, Item proplusionsystem, Item guidancesystem, Item gloves, Item crowbar, Item keycard, Item ladder) {
+		this.hyperdrive = hyperdrive;
+		this.proplusionsystem = proplusionsystem;
+		this.guidancesystem = guidancesystem;
+		this.gloves = gloves;
+		this.crowbar = crowbar;
+		this.keycard = keycard;
+		this.ladder = ladder;
+	}
 
 	
 	public void itemAcquired() {
@@ -33,7 +43,7 @@ public class Backpack {
 		if(ladder.getPossession()) {
 			System.out.println("Ladder");
 		}
-		
+		System.out.println();
 
 	}
 	public boolean allItemsAcquired() {

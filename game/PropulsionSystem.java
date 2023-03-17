@@ -1,13 +1,19 @@
 package game;
 
-public class ProplusionSystem implements item {
+public class PropulsionSystem implements Item {
 	
 	private boolean possession;
 	private String name;
+	private String desc;
 	
-	public ProplusionSystem() {
-		possession = false;
+	public PropulsionSystem() {
+		desc = "a missing part: propulsion system";
 		name = "Proplusion System";
+		possession = false;
+	}
+	
+	public String description() {
+		return desc;
 	}
 
 	@Override

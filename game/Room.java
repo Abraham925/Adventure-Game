@@ -21,10 +21,10 @@ public class Room {
      */
     private String description;
     
-    private ArrayList<item> items = new ArrayList<item>();
+    private ArrayList<Item> items = new ArrayList<Item>();
     private ArrayList<Interactable> interactables = new ArrayList<Interactable>();
     
-    public void addItem(item item) {
+    public void addItem(Item item) {
     	items.add(item);
     }
     
@@ -32,7 +32,7 @@ public class Room {
     	interactables.add(inter);
     }
     
-    public ArrayList<item> getItems(){
+    public ArrayList<Item> getItems(){
     	return items;
     }
     
@@ -77,5 +77,7 @@ public class Room {
      * Retrieve a description of this room (to the user).
      */
     public String getDescription() { return description; }
+    
+    public void setDescription(String description) { this.description = description; }
 	
 }

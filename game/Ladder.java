@@ -1,13 +1,19 @@
 package game;
 
-public class Ladder implements item {
+public class Ladder implements Item {
 	
 	private boolean possession;
 	private String name;
+	private String desc;
 	
 	public Ladder() {
+		desc = "a ladder";
+		name = "ladder";
 		possession = false;
-		name = "Ladder";
+	}
+	
+	public String description() {
+		return desc;
 	}
 
 	@Override
@@ -20,8 +26,6 @@ public class Ladder implements item {
 		possession = true;
 
 	}
-
-
 
 	@Override
 	public boolean getPossession() {
