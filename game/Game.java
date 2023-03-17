@@ -27,10 +27,24 @@ public class Game {
          */
         private boolean over;
         
+    	private Hyperdrive hyperdrive = new Hyperdrive();
+    	private PropulsionSystem proplusionsystem = new PropulsionSystem();
+    	private GuidanceSystem guidancesystem = new GuidanceSystem();
+    	private Gloves gloves = new Gloves();
+    	private Crowbar crowbar = new Crowbar();
+    	private Keycard keycard = new Keycard();
+    	private Ladder ladder = new Ladder();
+    	
+    	private Chest blackholeChest = new Chest(null, crowbar, "chest", "The abscence of sound is the most shocking.");
+    	
+        private Backpack inventory = new Backpack(hyperdrive, proplusionsystem, guidancesystem, gloves, crowbar, keycard, ladder);
+        
         /**
          * Return the room in which the user is currently.
          */
         public Room getCurrentRoom() { return currentRoom; }
+        
+        public Backpack getInventory() { return inventory; }
         
         
         
@@ -39,6 +53,9 @@ public class Game {
          */
         public Game() { 
         	//starting world
+        	
+        	
+        	
         	System.out.println("You are a Galactic Federation Space TrooptroopTM on the star outpost"
         			+ "\n in Gamma Quadrant! Your commander has given you orders to explore the great unknow"
         			+ "\n and you have just bravely flown into an asteriod! You check your vital. You are not dead"
@@ -58,6 +75,22 @@ public class Game {
             Room emptyRegion5 = new Room("There is... nothing...");
         //starting world end
 
+        Room swirlingMassEntrance = new Room("Bathroom");
+        Room redSunEntrance = new Room("Basement");
+        Room deathShipEntrance = new Room("Bedroom 1st Floor");
+        Room blackHoleEntrance = new Room("Seems impossibly dark in that direction...");
+        //blackHoleEntrance.addItem(gloves);
+        blackHoleEntrance.addItem(crowbar);
+        blackHoleEntrance.addItem(ladder);
+        blackHoleEntrance.addInteractable(blackholeChest);
+        RoomTie lever = new RoomTie("You feel the ground shake and hear a high pitched screech from far away.");
+    	lever.interName("lever");
+    	RoomTie button = new RoomTie("Doorway Unlocked.");
+    	button.interName("button");
+        
+        blackHoleEntrance.addInteractable(lever);
+        blackHoleEntrance.addInteractable(button);
+        
         //black hole start
     	Room Blackhole = new Room("Center of the black hole. You feel your lungs compressing. You have 10 turns to find the wormhole.");
     	Room LightSource = new Room("Black holes don't have light. All you see is nothing.");
@@ -67,6 +100,9 @@ public class Game {
     	Room Wormhole = new Room("The only escape from the black hole. There is a bright neutron star in the distance with some accompanying asteroid fragments.");
     	Room NeutronStar = new Room("Known to be very hot but a beautiful blue, this star is older than the others by far. It is on the far side of a system by the name HP 50329Z. Planets ASCR407 and Vydol can be seen in the distance.");
     	
+    	
+    	
+    	blackHoleEntrance.setDir("darkness", new LockedExit(this, Blackhole, null, lever, null));
     	Blackhole.setDir("light", new NormalExit(this, LightSource));
     	LightSource.setDir("back", new NormalExit(this, Blackhole));
     	Blackhole.setDir("distant fragments", new NormalExit(this, StarFragments));
@@ -74,20 +110,10 @@ public class Game {
     	Blackhole.setDir("space tear", new NormalExit(this, SpaceTear));
     	SpaceTear.setDir("blackhole", new NormalExit(this, Blackhole));
     	SpaceTear.setDir("debris", new NormalExit(this, WarpedDebris));
-    	WarpedDebris.setDir("space tear", new NormalExit(this, StarFragments));
+    	WarpedDebris.setDir("space tear", new NormalExit(this, SpaceTear));
     	WarpedDebris.setDir("distant fragments", new NormalExit(this, StarFragments));
     	
-    	/*
-    	Blackhole.setDir("light", LightSource);
-    	LightSource.setDir("back", Blackhole);
-    	Blackhole.setDir("distant fragments", StarFragments);
-    	StarFragments.setDir("blackhole", Blackhole);
-    	Blackhole.setDir("space tear", SpaceTear);
-    	SpaceTear.setDir("blackhole", Blackhole);
-    	SpaceTear.setDir("debris", WarpedDebris);
-    	WarpedDebris.setDir("space tear", SpaceTear);
-    	WarpedDebris.setDir("distant fragments", StarFragments);
-    	*/
+    	
 
     	StarFragments.setDir("wormhole", new NormalExit(this, Wormhole)); //room to be unlocked
     	    	
@@ -96,12 +122,9 @@ public class Game {
     	
     	
         
-        Room swirlingMassEntrance = new Room("Bathroom");
-        Room redSunEntrance = new Room("Basement");
-        Room deathShipEntrance = new Room("Bedroom 1st Floor");
-        Room blackHoleEntrance = new Room("Seems impossibly dark in that direction...");
+        
     	
-        blackHoleEntrance.setDir("darkness", new NormalExit(this, Blackhole));
+        
         //black hole end
         
          
@@ -348,6 +371,7 @@ public class Game {
 
         
         currentRoom = blackHoleEntrance;
+
         
         over = false;
     }

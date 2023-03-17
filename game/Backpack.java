@@ -1,51 +1,53 @@
 package game;
 
 public class Backpack {
-	//private int part1C;
-	private int part2C;
-	private int part3C;
-	private int partFC;
-	private int telescopeC;
-	Part3 p3 = new Part3();
-	Telescope t = new Telescope();
-	Part2 p2 = new Part2();
-	FinalPart f = new FinalPart();
+	private Item hyperdrive;
+	private Item proplusionsystem;
+	private Item guidancesystem;
+	private Item gloves;
+	private Item crowbar;
+	private Item keycard;
+	private Item ladder;
 	
-	public Backpack() {
-		//part1C = 0;
-		part2C = 0;
-		part3C = 0;
-		partFC = 0;
-		telescopeC = 0;
+	public Backpack(Item hyperdrive, Item proplusionsystem, Item guidancesystem, Item gloves, Item crowbar, Item keycard, Item ladder) {
+		this.hyperdrive = hyperdrive;
+		this.proplusionsystem = proplusionsystem;
+		this.guidancesystem = guidancesystem;
+		this.gloves = gloves;
+		this.crowbar = crowbar;
+		this.keycard = keycard;
+		this.ladder = ladder;
 	}
+
 	
-	public void increaseCount(String x) {
-		switch(x) {
-			case("Piece 3"): part3C ++; break;
-			case("Telescope"): telescopeC++; break;
-			case("Piece 2"): part2C++; break;
-			case("Final Part"): partFC++; break;
+	public void itemAcquired() {
+		System.out.println("Items in your inventory:");
+		if(hyperdrive.getPossession()) {
+			System.out.println("Hyperdrive");
 		}
-	}
-	public void decreaseCount(String x) {
-		switch(x) {
-			case("Piece 3"): part3C--; break;
-			case("Telescope"): telescopeC--; break;
-			case("Piece 2"): part2C--; break;
-			case("Final Part"): partFC--; break;
+		if(proplusionsystem.getPossession()) {
+			System.out.println("Proplusion System");
 		}
-	}
-	public int getCount(String x) {
-		switch(x) {
-			case("Piece 3"): return part3C;
-			case("Telescope"): return telescopeC; 
-			case("Part 2"): return part2C;
-			case("Final Part"): return partFC;
+		if(guidancesystem.getPossession()) {
+			System.out.println("Guidance System");
 		}
-		return 0;
+		if(gloves.getPossession()) {
+			System.out.println("Gloves");
+		}
+		if(crowbar.getPossession()) {
+			System.out.println("Crowbar");
+		}
+		if(keycard.getPossession()) {
+			System.out.println("Keycard");
+		}
+		if(ladder.getPossession()) {
+			System.out.println("Ladder");
+		}
+		System.out.println();
+
 	}
 	public boolean allItemsAcquired() {
-		if(part2C > 0&&partFC > 0&&part3C>0) {
+		if(hyperdrive.getPossession()&&proplusionsystem.getPossession()&&guidancesystem.getPossession()) {
 			return true;
 		}
 		return false;

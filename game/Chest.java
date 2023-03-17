@@ -1,47 +1,72 @@
 package game;
 
-import java.util.HashMap;
-import java.util.Random;
-
-public class Chest {
-	private String item;
-	private boolean opened;
-    /**
-     * HashMap of items
-     */
-    private HashMap<String, String> itemList;
+public class Chest implements Interactable{
 	
-	public Chest() {
-    	Part3 x = new Part3();
-    	Telescope y = new Telescope();
-    	Part2 z = new Part2();
-    	itemList.put(z.name(), z.use());
-    	itemList.put(y.name(), y.use());
-    	itemList.put(x.name(), x.use());
+	private String name;
+	private boolean opened;
+	private Item key;
+	private Item item;
+	private String interaction;
+	private String desc;
+	
 
+	public Chest(Item key, Item item, String name, String interaction) {		
 		opened = false;
+		desc = "chest";
+		this.key = key;
+		this.item = item;
+		this.name = name;
+		this.interaction = interaction;
 	}
 	
-	
-    public String getItem() {
+    public String getItem() { //name of item
+    	return item.name();
 
-    	if(opened == false) {
-	    	Random generator = new Random();
-	    	String[] values = (String[]) itemList.values().toArray();
-	    	String randomValue = values[generator.nextInt(values.length)];
-	    	
-	    	item = itemList.get(randomValue);
-	    	return item;
-    	}
-    	return "This chest has already been opened";
-	    	
     }
-    public void setOpened() {
-    	opened = true;
+    
+    public String getKey() { //name of key to open
+    	return key.name();
     }
-    public boolean getOpened() {
-    	return opened;
-    }
+    
+	@Override
+	public void unlock() {
+		opened = true;	
+	}
+
+	@Override
+	public boolean isUnlocked() {
+		return opened;
+	}
 	
+	public void interName(String text) {
+		name = text;
+	}
+	
+	public String description() {
+		return desc;
+	}
+	
+	public String name() {
+		return name;
+	}
+	
+	@Override
+	public void interact() {
+		if(key == null || key.getPossession()) {
+			if(!opened) {
+				item.pickedUp();
+				unlock();
+				System.out.println(interaction);
+				System.out.println("You scavenged the chest and discovered a " + item.name());
+			}else {
+				System.out.println("There's nothing interesting about the empty chest");
+			}
+		}else {
+			System.out.println("A lock prevents it from being opened up. Maybe you should look around for it.");
+		}
+	}
 	
 }
+
+
+

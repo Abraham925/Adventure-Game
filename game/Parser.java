@@ -37,6 +37,10 @@ public class Parser {
     	this.game = game;
         map.put("look", new Look(game));
         map.put("ls", new Look(game));
+        map.put("search", new Search(game));
+        map.put("help", new Help(this));
+        map.put("inventory", new Inventory(game.getInventory()));
+        map.put("i", new Inventory(game.getInventory()));
         keyboard = new Scanner(System.in);
     }
     
@@ -56,6 +60,21 @@ public class Parser {
         // The room that the user is in.
         room = game.getCurrentRoom();
         
+        for(int i = 0; i<room.getInter().size(); i+=1) {
+        //if(room.getInter().size() == 1) {
+        	if(room.getInter().get(i).description().equals("chest")) {
+        		map.put("open " + room.getInter().get(i).name(), new OpenChest(room.getInter().get(i)));
+        	}else {
+        		map.put("use " + room.getInter().get(i).name(), new Use(room.getInter().get(i)));
+        	}
+        }
+        
+        //System.out.println("ITEMS SIZE: " + room.getItems().size());
+        
+        for(int i = 0; i<room.getItems().size(); i+=1) {
+        	map.put("pick up " + room.getItems().get(i).name(), new PickUpItem(room.getItems().get(i)));
+        }
+        
         if(command.equals("")) {//game just started, shows room description
         	System.out.println(room.getDescription());
         }
@@ -72,14 +91,28 @@ public class Parser {
         		System.out.println("Nothing else exists that way.");
         	}
         }else { //command is a direction
-        	room.getDir(command).travel();
-        	//game.setCurrentRoom(room);
+        	for(int i = 0; i<room.getInter().size(); i+=1) {
+        	//if(room.getInter().size() == 1) {
+        		if(room.getInter().get(0).name().equals("chest")) {
+            		map.remove("open " + room.getInter().get(i).name());
+            	}else {
+            		map.remove("use " + room.getInter().get(i).name()); //removes mapping before switching rooms
+            	}
+            }
+        	for(int i = 0; i<room.getItems().size(); i+=1) {
+            	map.remove("pick up " + room.getItems().get(i).name());
+            }
+        	room.getDir(command).travel(); //calls travel on door
         	System.out.println(game.getCurrentRoom().getDescription());
         }
     }
     
     public Command getCommand(String com) {
     	return map.get(com);
+    }
+    
+    public HashMap<String, Command> getMap(){
+    	return map;
     }
     
 }
