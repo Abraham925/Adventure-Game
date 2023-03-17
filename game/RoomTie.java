@@ -25,7 +25,6 @@ public class RoomTie implements Interactable {
 
 	public boolean isUnlocked() {
 		return unlock;
-		
 	}
 	
 	public String description() {

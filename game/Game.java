@@ -35,7 +35,7 @@ public class Game {
     	private Keycard keycard = new Keycard();
     	private Ladder ladder = new Ladder();
     	
-    	private Chest blackholeChest = new Chest(null, crowbar, "chest", "The abscence of sound is the most shocking.");
+    	//private Chest blackholeChest = new Chest(null, crowbar, "chest", "The abscence of sound is the most shocking.");
     	
         private Backpack inventory = new Backpack(hyperdrive, proplusionsystem, guidancesystem, gloves, crowbar, keycard, ladder);
         
@@ -80,13 +80,14 @@ public class Game {
         Room deathShipEntrance = new Room("Bedroom 1st Floor");
         Room blackHoleEntrance = new Room("Seems impossibly dark in that direction...");
         //blackHoleEntrance.addItem(gloves);
+        Chest blackholeChest = new Chest(null, crowbar, "chest", "The abscence of sound is the most shocking.");
         blackHoleEntrance.addItem(crowbar);
         blackHoleEntrance.addItem(ladder);
         blackHoleEntrance.addInteractable(blackholeChest);
-        //RoomTie lever = new RoomTie("You feel the ground shake and hear a high pitched screech from far away.");
-    	//lever.interName("lever");
-    	//RoomTie button = new RoomTie("Doorway Unlocked.");
-    	//button.interName("button");
+        
+        //RoomTie lever = new RoomTie("You feel the ground shake and hear a high pitched screech from far away.", "lever");
+    	
+    	//RoomTie button = new RoomTie("Doorway Unlocked.", "button");
         
         //blackHoleEntrance.addInteractable(lever);
         //blackHoleEntrance.addInteractable(button);
@@ -103,7 +104,7 @@ public class Game {
     	
     	
     	//blackHoleEntrance.setDir("darkness", new LockedExit(this, Blackhole, null, lever, null));
-    	Blackhole.setDir("light", new NormalExit(this, LightSource));
+    	Blackhole.setDir("light", new UnstableExit(this, LightSource));
     	LightSource.setDir("back", new NormalExit(this, Blackhole));
     	Blackhole.setDir("distant fragments", new NormalExit(this, StarFragments));
     	StarFragments.setDir("blackhole", new NormalExit(this, Blackhole));
@@ -304,7 +305,7 @@ public class Game {
         floor2West.setDir("back", new NormalExit(this, floor2SouthEast));
         
         	//MAKE ITEM
-        floor2Bio.setDir("back", new NormalExit(this, floor2West));
+        floor2Bio.setDir("back", new NormalExit(this, floor2West));                                 
         
         floor2NorthWest.setDir("right", new NormalExit(this, floor2NorthEast));
         floor2NorthWest.setDir("back", new NormalExit(this, floor2West));

@@ -4,7 +4,7 @@ public class UnstableExit implements Exit {
 	
 	private Game game;
 	private Room room;
-	private int security = 2;
+	private int security = 1;
 	
 	public UnstableExit(Game game, Room room) {
 		this.game = game;
@@ -17,7 +17,7 @@ public class UnstableExit implements Exit {
 			security-=1;
 			game.setCurrentRoom(room);
 		}else {
-			System.out.println("This route seemed to only work a few times before fading away, what a shame.");
+			System.out.println("This route seemed to only work once before fading away, what a shame.");
 		}
 		
 	}
