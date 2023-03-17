@@ -103,7 +103,7 @@ public class Game {
     	
     	
     	
-    	//blackHoleEntrance.setDir("darkness", new LockedExit(this, Blackhole, null, lever, null));
+    	blackHoleEntrance.setDir("darkness", new NormalExit(this, Blackhole));
     	Blackhole.setDir("light", new UnstableExit(this, LightSource));
     	LightSource.setDir("back", new NormalExit(this, Blackhole));
     	Blackhole.setDir("distant fragments", new NormalExit(this, StarFragments));
@@ -376,8 +376,8 @@ public class Game {
         //space station end
 
         
-        currentRoom = basementBottomLeft;
-
+        currentRoom = blackHoleEntrance;
+        //currentRoom = basementBottomLeft;
         
         over = false;
     }
