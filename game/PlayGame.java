@@ -20,7 +20,7 @@ public class PlayGame {
 
         while (! game.isOver()) 
             parser.executeTurn();
-
+        	
         System.out.println("Game over.");
     }
     
