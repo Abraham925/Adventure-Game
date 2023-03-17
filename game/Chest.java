@@ -18,7 +18,7 @@ public class Chest implements Interactable{
 		this.name = name;
 		this.interaction = interaction;
 	}
-	
+
     public String getItem() { //name of item
     	return item.name();
 
