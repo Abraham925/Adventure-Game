@@ -133,6 +133,7 @@ public class Game {
         Room hangar = new Room("You find yourself in a large landing bay. Something seems off. To your left is a door that say MAINTINANCE. "
         		+ "In front of you is an open door");
         Room maintenance = new Room("You find yourself in a small room with scattered tools and parts. Something is sparking.");
+        
         Room hallwayEntrance = new Room("You are in a hallway. In the darkness a light flickers off to your right.");
         //setting up hangar and maintenance
         hangar.setDir("left", new NormalExit(this, maintenance));
@@ -197,6 +198,7 @@ public class Game {
         
         hallwayNorthWest.setDir("left", new NormalExit(this, hallwayNorth));
         hallwayNorthWest.setDir("right", new NormalExit(this, hallwayWest));
+        hallwayNorthWest.addItem(gloves);
         
         hallwayWest.setDir("left", new NormalExit(this, hallwayNorthWest));
         hallwayWest.setDir("right", new NormalExit(this, hallwaySouthWest));
@@ -211,7 +213,12 @@ public class Game {
         Room elevatorFloor3 = new Room("The floor just outside the elevator is all gone."
         		+ "You see a black form on the rubble below. You'll have to jump if you want to make it across.");
         Room elevatorFloor4= new Room("You see what looks like a command room. Out of the bay window you can see the stars.");
+        
         Room cargoBay = new Room("You look around and see scattered boxes with belongings scattered across the ground. Can any of it be useful?");
+        Chest cargo = new Chest(crowbar, hyperdrive, "Cargo Chest", "The lid of the cargo box rips open. The nails scatter across the floor."
+        		+ "\n You found the HYPERDRIVE! This will be useful in reassembling the spaceship.");
+        cargoBay.addInteractable(cargo);
+        
         Room flickeringLight = new Room("You are in what seem to be baraks. Scratches mark the walls. You see a figure coughing.");
         
         elevatorFloor1.setDir("2", new NormalExit(this, elevatorFloor2));
@@ -249,6 +256,8 @@ public class Game {
         RoomTie hangarButton = new RoomTie("You hear something rumbling to your left...", "button", basementBottomLeft, 
         		"You see the slabs jutting out of the wall, with an open door at the top of the stair.");
         basementTopRight.addInteractable(hangarButton);
+        basementBottomRight.addItem(proplusionsystem);
+
         
         basementCollapse.setDir("left", new NormalExit(this, basementBottomLeft));
         basementCollapse.setDir("right", new NormalExit(this, basementTopRight));
@@ -257,6 +266,8 @@ public class Game {
         basementBottomLeft.setDir("left", new NormalExit(this, basementBottomRight));
         basementBottomLeft.setDir("right", new NormalExit(this, basementCollapse));
         basementBottomLeft.setDir("up", new LockedExit(this, hangar, null, hangarButton, null));
+        basementBottomLeft.addItem(crowbar);
+
         
         basementBottomRight.setDir("left", new NormalExit(this, basementTopRight));
         basementBottomRight.setDir("right", new NormalExit(this, basementBottomLeft));
@@ -346,6 +357,7 @@ public class Game {
         
         hallway3F3.setDir("forward", new NormalExit(this, maproomF3));
         hallway3F3.setDir("back", new NormalExit(this, hallway2F3));
+
         
         	//MAKE INTERACTION WITH MAP!!
         maproomF3.setDir("back", new NormalExit(this, hallway3F3));
@@ -369,6 +381,10 @@ public class Game {
         Room commandCenter = new Room ("You see a large window looking into the vast depth of space. There is someone "
         		+ "on the ground in a white uniform bleeding with his hand over his heart. You look at the many consoles"
         		+ " and equitment and assess you are in the command center.");
+
+        Chest captain = new Chest(keycard, gloves, "Captain", "You search the captain, his blood stains the gloves."
+        		+ "\nYou found a Keycard. Seems like it opens a room of some sort.");
+        commandCenter.addInteractable(captain);
         
         elevatorFloor4.setDir("forward", new NormalExit(this, commandCenter));
         	//POSSIBLY MAKE COMMAND CENTER LOCKED AT FIRST? NEED CARGO BAY EQUITMENT TO BUST DOWN DOOR OR ACCESS CODE?
