@@ -6,9 +6,10 @@ public class RoomTie implements Interactable {
 	private String echo;
 	private String desc;
 	
-	public RoomTie(String echo) {
+	public RoomTie(String echo, String name) {
 		desc = "switch";
 		this.echo = echo;
+		this.name = name;
 	}
 	
 	private boolean unlock = false;
@@ -19,10 +20,6 @@ public class RoomTie implements Interactable {
 
 	public boolean isUnlocked() {
 		return unlock;
-	}
-	
-	public void interName(String text) {
-		name = text;
 	}
 	
 	public String description() {

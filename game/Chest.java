@@ -57,7 +57,7 @@ public class Chest implements Interactable{
 				item.pickedUp();
 				unlock();
 				System.out.println(interaction);
-				System.out.println("You scavenged the chest and discovered a " + item.name());
+				System.out.println("You scavenged the chest and discovered a " + item.name() + ". ");
 			}else {
 				System.out.println("There's nothing interesting about the empty chest");
 			}
