@@ -21,21 +21,37 @@ public class Room {
      */
     private String description;
     
-    private ArrayList<Item> items = new ArrayList<Item>();
-    private ArrayList<Interactable> interactables = new ArrayList<Interactable>();
+    private ArrayList<Item> items = new ArrayList<Item>(); //stores the item(s) in the room
+    private ArrayList<Interactable> interactables = new ArrayList<Interactable>(); //stores the interactables in the room
     
+    /**
+     * adds an item to the room
+     * @param item The item that is being added
+     */
     public void addItem(Item item) {
     	items.add(item);
     }
     
+    /**
+     * adds an interactable to the room
+     * @param inter The interactable that's being added to the room
+     */
     public void addInteractable(Interactable inter) {
     	interactables.add(inter);
     }
     
+    /**
+     * Returns the list of items
+     * @return The list of items
+     */
     public ArrayList<Item> getItems(){
     	return items;
     }
     
+    /**
+     * Returns the list of interactables
+     * @return The list of interactables
+     */
     public ArrayList<Interactable> getInter(){
     	return interactables;
     }
@@ -61,6 +77,10 @@ public class Room {
 		return dir.get(direction);
 	}
     
+    /**
+     * Returns the directions map
+     * @return The directions map
+     */
     public HashMap<String, Exit> getDirMap(){
     	return dir;
     }
@@ -78,6 +98,10 @@ public class Room {
      */
     public String getDescription() { return description; }
     
+    /**
+     * Sets the descriptions to the description provided
+     * @param description The new description for the room
+     */
     public void setDescription(String description) { this.description = description; }
 	
 }
