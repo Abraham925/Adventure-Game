@@ -194,9 +194,6 @@ public class Game {
         hallwayNorthWest.setDir("right", new NormalExit(this, hallwayWest));
         hallwayNorthWest.addItem(gloves);
         
-        hallwayWest.setDir("left", new NormalExit(this, hallwayNorthWest));
-        hallwayWest.setDir("right", new NormalExit(this, hallwaySouthWest));
-        
         hallwaySouthWest.setDir("left", new NormalExit(this, hallwayWest));
         hallwaySouthWest.setDir("right", new NormalExit(this, hallwaySouth));
         //first floor rooms and elevator
@@ -240,6 +237,14 @@ public class Game {
         //basement
         Room basementCollapse = new Room ("Around you is a labryth of pipes and machines, the inner workings of the ship."
         		+ " The hallway above you is too far to get back up to.");
+        hallwayWest.setDir("left", new UnstableExit(this, hallwayNorthWest, hallwayNorthWest, hallwaySouthWest, "left",
+        		"right", "jump", "jump", basementCollapse, "You here a creaking sound then suddenly the hall to your right"
+        				+ " collapses into a pile of rubble. You peer down and see some pipes by the rubble, "
+        				+ "maybe a part of another floor on the ship..."));
+        hallwayWest.setDir("right", new UnstableExit(this, hallwaySouthWest, hallwayNorthWest, hallwaySouthWest, "left",
+        		"right", "jump", "jump", basementCollapse, "You here a creaking sound then suddenly the hall to your left"
+        				+ " collapses into a pile of rubble. You peer down and see some pipes by the rubble, "
+        				+ "maybe a part of another floor on the ship..."));
         Room basementTopRight = new Room ("There is a flashing button labeled HANGAR on the wall."
         		+ "There is what looks like a boiler next to you.");
         		//add item for part of the ship
@@ -336,7 +341,7 @@ public class Game {
         Room maproomF3 = new Room ("In front of you is a large, flat screen that seems to be showing the galaxy"
         		+ " the station is in.\n There's a flashing icon that says \"ANOMALY DETECTED\" next to a large red dot illuminated on the screen."
         		+ "There is a console that looks like some sort of guidance system...");
-        guidancesystem.setRoom(maproomF3);
+        maproomF3.addItem(guidancesystem);
         elevatorFloor3.setDir("forward", new NormalExit(this, elevatorExitF3));
         
         elevatorExitF3.setDir("forward", new NormalExit(this, hallway1F3));
@@ -387,8 +392,8 @@ public class Game {
         //space station end
 
         
-        currentRoom = blackHoleEntrance;
-        //currentRoom = basementBottomLeft;
+        //currentRoom = blackHoleEntrance;
+        currentRoom = hangar;
 
         
         over = false;
