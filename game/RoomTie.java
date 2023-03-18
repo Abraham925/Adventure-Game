@@ -7,11 +7,13 @@ public class RoomTie implements Interactable {
 	private Room unlockedRoom;
 	private String newDescription;
 	private String desc;
+	private String action;
 	
-	public RoomTie(String echo, String name, Room unlockedRoom, String newDescription) {
+	public RoomTie(String name, String action, String echo, Room unlockedRoom, String newDescription) {
 		desc = "switch";
-		this.echo = echo;
 		this.name = name;
+		this.action = action;
+		this.echo = echo;
 		this.unlockedRoom = unlockedRoom;
 		this.newDescription = newDescription;
 	}
@@ -20,7 +22,8 @@ public class RoomTie implements Interactable {
 	
 	public void unlock() {
 		unlock = true;
-		unlockedRoom.setDescription(newDescription);
+		if(newDescription != null)
+			unlockedRoom.setDescription(newDescription);
 	}
 
 	public boolean isUnlocked() {
@@ -33,6 +36,10 @@ public class RoomTie implements Interactable {
 	
 	public String name() {
 		return name;
+	}
+	
+	public String action() {
+		return action + " ";
 	}
 	
 	public void interact() {

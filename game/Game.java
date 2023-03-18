@@ -27,8 +27,11 @@ public class Game {
          */
         private boolean over;
         
+        //All the items to be found in the game, created at the start so
+        //that inventory can have all the items with their possession booleans
+        //set to false
     	private Hyperdrive hyperdrive = new Hyperdrive();
-    	private PropulsionSystem proplusionsystem = new PropulsionSystem();
+    	private PropulsionSystem propulsionsystem = new PropulsionSystem();
     	private GuidanceSystem guidancesystem = new GuidanceSystem();
     	private Gloves gloves = new Gloves();
     	private Crowbar crowbar = new Crowbar();
@@ -37,13 +40,18 @@ public class Game {
     	
     	//private Chest blackholeChest = new Chest(null, crowbar, "chest", "The abscence of sound is the most shocking.");
     	
-        private Backpack inventory = new Backpack(hyperdrive, proplusionsystem, guidancesystem, gloves, crowbar, keycard, ladder);
+    	//inventory starts with every item, however their possession booleans are
+    	//set to false meaning inventory starts empty
+        private Backpack inventory = new Backpack(hyperdrive, propulsionsystem, guidancesystem, gloves, crowbar, keycard, ladder);
         
         /**
          * Return the room in which the user is currently.
          */
         public Room getCurrentRoom() { return currentRoom; }
         
+        /**
+         * @return the user's current inventory
+         */
         public Backpack getInventory() { return inventory; }
         
         
@@ -96,21 +104,34 @@ public class Game {
     	Room Blackhole = new Room("Center of the black hole. You feel your lungs compressing. You have 10 turns to find the wormhole.");
     	Room LightSource = new Room("Black holes don't have light. All you see is nothing.");
     	Room StarFragments = new Room("Surrounding you are fragments left behind by the collapse of an ancient giant star. You notice less fragments than when you first spotted them.");
+    	
     	Room SpaceTear = new Room("It appears to be a tear in space, I wouldn't want to go near that...");
+    	RoomTie debris = new RoomTie("debris", "move", "The debris was pushed to the sides, making a clear opening in that direction. ", null, null);
+    	SpaceTear.addInteractable(debris);
+    	
     	Room WarpedDebris = new Room("The debris that was once here has been completely warped in size and color, emitting a somewhat dark shade of brown. From the outside, only sometimes is it visible.");
+    	Chest smallDebris = new Chest(null, null, "small debris", "These rocks are too small to be anything useful.");
+    	WarpedDebris.addInteractable(smallDebris);
+    	Chest coloredDebris = new Chest(null, propulsionsystem, "colored debris", "One of the colored rocks turned out to be a device of some sort.");
+    	WarpedDebris.addInteractable(coloredDebris);
+    	Chest hiddenDebris = new Chest(null, null, "hidden debris", "Some debris hidden behind the large debris didn't satisfy your search.");
+    	WarpedDebris.addInteractable(hiddenDebris);
+    	Chest largeDebris = new Chest(null, null, "large debris", "Though very large, there exists nothings within the gaps.");
+    	WarpedDebris.addInteractable(largeDebris);
+    	
     	Room Wormhole = new Room("The only escape from the black hole. There is a bright neutron star in the distance with some accompanying asteroid fragments.");
     	Room NeutronStar = new Room("Known to be very hot but a beautiful blue, this star is older than the others by far. It is on the far side of a system by the name HP 50329Z. Planets ASCR407 and Vydol can be seen in the distance.");
     	
     	
     	
     	blackHoleEntrance.setDir("darkness", new NormalExit(this, Blackhole));
-    	Blackhole.setDir("light", new UnstableExit(this, LightSource));
+    	Blackhole.setDir("light", new UnstableExit(this, LightSource, "This route seemed to only work once before fading away, what a shame."));
     	LightSource.setDir("back", new NormalExit(this, Blackhole));
     	Blackhole.setDir("distant fragments", new NormalExit(this, StarFragments));
     	StarFragments.setDir("blackhole", new NormalExit(this, Blackhole));
     	Blackhole.setDir("space tear", new NormalExit(this, SpaceTear));
     	SpaceTear.setDir("blackhole", new NormalExit(this, Blackhole));
-    	SpaceTear.setDir("debris", new NormalExit(this, WarpedDebris));
+    	SpaceTear.setDir("debris", new LockedExit(this, WarpedDebris, null, debris, "Through the debris you find a seemingly scientifically impossible event. "));
     	WarpedDebris.setDir("space tear", new NormalExit(this, SpaceTear));
     	WarpedDebris.setDir("distant fragments", new NormalExit(this, StarFragments));
     	
@@ -253,10 +274,10 @@ public class Game {
         Room basementBottomLeft = new Room ("There are some slabs slightly protruding from the wall, just barely enough to see."
         		+ " They seem to lead to a trapdoor.");
         
-        RoomTie hangarButton = new RoomTie("You hear something rumbling to your left...", "button", basementBottomLeft, 
+        RoomTie hangarButton = new RoomTie("button", "push", "You hear something rumbling to your left...", basementBottomLeft, 
         		"You see the slabs jutting out of the wall, with an open door at the top of the stair.");
         basementTopRight.addInteractable(hangarButton);
-        basementBottomRight.addItem(proplusionsystem);
+        //basementBottomRight.addItem(propulsionsystem);
 
         
         basementCollapse.setDir("left", new NormalExit(this, basementBottomLeft));
@@ -350,6 +371,7 @@ public class Game {
         hallway1F3.setDir("forward", new NormalExit(this, hallway2F3));	
         hallway1F3.setDir("back", new NormalExit(this, elevatorExitF3));	
         hallway1F3.setDir("door", new NormalExit(this, hallway1DoorF3));
+        hallway1DoorF3.setDir("back", new NormalExit(this, hallway1F3));
         
         hallway2F3.setDir("forward", new NormalExit(this, hallway3F3));
         hallway2F3.setDir("back", new NormalExit(this, hallway1F3));	
@@ -368,13 +390,13 @@ public class Game {
         blackhall2.setDir("right", new NormalExit(this, blackhall3));	
         blackhall2.setDir("left", new NormalExit(this, blackhall1));
         
-        blackhall3.setDir("forward", new NormalExit(this, blackholeWarpdrive));	
-        blackhall3.setDir("left", new NormalExit(this, blackhall2));
+        blackhall3.setDir("one", new NormalExit(this, blackholeWarpdrive));	
+        blackhall3.setDir("two", new NormalExit(this, blackhall2));
         
         blackholeWarpdrive.setDir("forward", new NormalExit(this, Blackhole));
-        blackholeWarpdrive.setDir("hand", new NormalExit(this, Blackhole));
+        blackholeWarpdrive.setDir("backward", new LockedExit(this, Blackhole, null, null, null));
         	//do I make there be no option to turn back??
-        blackholeWarpdrive.setDir("back", new NormalExit(this, blackhall3));
+        //blackholeWarpdrive.setDir("back", new NormalExit(this, blackhall3));
         
         //floor 4
         	//INTERACTION WITH CAPTAIN AND ITEM (INTERACTION WITH OTHER EQUITMENT IN ROOM?)

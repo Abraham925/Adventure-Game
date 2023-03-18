@@ -28,6 +28,9 @@ public class Parser {
     
     //private boolean toggleCrouch = false;
     
+    /**
+     * Contains pairs of command to be typed in and its corresponding action
+     */
     private HashMap<String, Command> map = new HashMap<String, Command>();
 
     /**
@@ -36,11 +39,11 @@ public class Parser {
     public Parser(Game game) {
     	this.game = game;
         map.put("look", new Look(game));
-        map.put("ls", new Look(game));
+        //map.put("ls", new Look(game));
         map.put("search", new Search(game));
         map.put("help", new Help(this));
         map.put("inventory", new Inventory(game.getInventory()));
-        map.put("i", new Inventory(game.getInventory()));
+        //map.put("i", new Inventory(game.getInventory()));
         keyboard = new Scanner(System.in);
     }
     
@@ -60,17 +63,18 @@ public class Parser {
         // The room that the user is in.
         room = game.getCurrentRoom();
         
+        //Checks room for interactables and adds those actions to the hashmap
         for(int i = 0; i<room.getInter().size(); i+=1) {
-        //if(room.getInter().size() == 1) {
         	if(room.getInter().get(i).description().equals("chest")) {
-        		map.put("open " + room.getInter().get(i).name(), new OpenChest(room.getInter().get(i)));
+        		map.put(room.getInter().get(i).action() + room.getInter().get(i).name(), new OpenChest(room.getInter().get(i)));
         	}else {
-        		map.put("use " + room.getInter().get(i).name(), new Use(room.getInter().get(i)));
+        		map.put(room.getInter().get(i).action() + room.getInter().get(i).name(), new Use(room.getInter().get(i)));
         	}
         }
         
         //System.out.println("ITEMS SIZE: " + room.getItems().size());
         
+        //Checks for items in the room, adds pick up action for each item
         for(int i = 0; i<room.getItems().size(); i+=1) {
         	map.put("pick up " + room.getItems().get(i).name(), new PickUpItem(room.getItems().get(i)));
         }
@@ -91,12 +95,12 @@ public class Parser {
         		System.out.println("Nothing else exists that way.");
         	}
         }else { //command is a direction
-        	for(int i = 0; i<room.getInter().size(); i+=1) {
-        	//if(room.getInter().size() == 1) {
+        	//removes room-specific mappings for items and interactables
+        	for(int i = 0; i<room.getInter().size(); i+=1) { 
         		if(room.getInter().get(0).name().equals("chest")) {
-            		map.remove("open " + room.getInter().get(i).name());
+            		map.remove(room.getInter().get(i).action() + room.getInter().get(i).name());
             	}else {
-            		map.remove("use " + room.getInter().get(i).name()); //removes mapping before switching rooms
+            		map.remove(room.getInter().get(i).action() + room.getInter().get(i).name()); //removes mapping before switching rooms
             	}
             }
         	for(int i = 0; i<room.getItems().size(); i+=1) {
@@ -107,10 +111,17 @@ public class Parser {
         }
     }
     
+    /**
+     * @param com, the command inputed by the user
+     * @return the value corresponding to that command
+     */
     public Command getCommand(String com) {
     	return map.get(com);
     }
     
+    /**
+     * @return the command hashmap (used in help command to print existing commands)
+     */
     public HashMap<String, Command> getMap(){
     	return map;
     }
