@@ -21,6 +21,8 @@ public class Game {
          * the state by representing the user's current location.
          */
         private Room currentRoom;
+        
+        Room maintenance = new Room("You find yourself in a small room with scattered tools and parts. Something is sparking.");
 
         /**
          * Keeps track of whether this game is over or not.
@@ -58,23 +60,13 @@ public class Game {
         /**
          * Constructor to set up the game.Y
          */
-        public Game() {        
+        public Game() {   
+        	
         Room blackHoleEntrance = new Room("Seems impossibly dark in that direction...");
-        //blackHoleEntrance.addItem(gloves);
-        Chest blackholeChest = new Chest(null, crowbar, "chest", "The abscence of sound is the most shocking.");
-        blackHoleEntrance.addItem(crowbar);
-        blackHoleEntrance.addItem(ladder);
-        blackHoleEntrance.addInteractable(blackholeChest);
         
-        //RoomTie lever = new RoomTie("You feel the ground shake and hear a high pitched screech from far away.", "lever");
-    	
-    	//RoomTie button = new RoomTie("Doorway Unlocked.", "button");
-        
-        //blackHoleEntrance.addInteractable(lever);
-        //blackHoleEntrance.addInteractable(button);
         
         //black hole start
-    	Room Blackhole = new Room("Center of the black hole. You feel your lungs compressing. You have 10 turns to find the wormhole.");
+    	Room Blackhole = new Room("Center of the black hole. You feel your lungs compressing. You need to find the wormhole quickly.");
     	Room LightSource = new Room("Black holes don't have light. All you see is nothing.");
     	Room StarFragments = new Room("Surrounding you are fragments left behind by the collapse of an ancient giant star. You notice less fragments than when you first spotted them.");
     	
@@ -98,7 +90,7 @@ public class Game {
     	
     	
     	blackHoleEntrance.setDir("darkness", new NormalExit(this, Blackhole));
-    	Blackhole.setDir("light", new UnstableExit(this, LightSource, "This route seemed to only work once before fading away, what a shame."));
+    	Blackhole.setDir("light", new UnstableExit(this, LightSource, Blackhole, LightSource, "light", "back" , "light", "back", Blackhole, "This route seemed to only work once before fading away, what a shame."));
     	LightSource.setDir("back", new NormalExit(this, Blackhole));
     	Blackhole.setDir("distant fragments", new NormalExit(this, StarFragments));
     	StarFragments.setDir("blackhole", new NormalExit(this, Blackhole));
@@ -124,9 +116,9 @@ public class Game {
         
          
         //space station begin
-        Room hangar = new Room("You find yourself in a large landing bay. Something seems off. To your left is a door that say MAINTINANCE."
+        Room hangar = new Room("You find yourself in a large landing bay. Something seems off. To your left is a door that say MAINTENANCE."
         		+ " In front of you is an open door");
-        Room maintenance = new Room("You find yourself in a small room with scattered tools and parts. Something is sparking.");
+        //Room maintenance = new Room("You find yourself in a small room with scattered tools and parts. Something is sparking.");
         
         Room hallwayEntrance = new Room("You are in a hallway. In the darkness a light flickers off to your right.");
         //setting up hangar and maintenance
@@ -205,7 +197,7 @@ public class Game {
         Room elevatorFloor4= new Room("You see what looks like a command room. Out of the bay window you can see the stars.");
         
         Room cargoBay = new Room("You look around and see scattered boxes with belongings scattered across the ground. Can any of it be useful?");
-        Chest cargo = new Chest(crowbar, hyperdrive, "Cargo Chest", "The lid of the cargo box rips open. The nails scatter across the floor."
+        Chest cargo = new Chest(crowbar, hyperdrive, "cargo chest", "The lid of the cargo box rips open. The nails scatter across the floor."
         		+ "\n You found the HYPERDRIVE! This will be useful in reassembling the spaceship.");
         cargoBay.addInteractable(cargo);
         
@@ -250,7 +242,7 @@ public class Game {
         		//add item for part of the ship
         Room basementBottomRight = new Room ("You find a massive machine reaching up into the center of the ship."
         		+ " All the pipes around you seem to be leading into it.");
-        Room basementBottomLeft = new Room ("There are some slabs slightly protruding from the wall, just barely enough to see."
+        Room basementBottomLeft = new Room ("There are some slabs slightly protruding from the wall, just barely enough to see and a crowbar is wedged between two of them."
         		+ " They seem to lead to a trapdoor.");
         
         RoomTie hangarButton = new RoomTie("button", "push", "You hear something rumbling to your left...", basementBottomLeft, 
@@ -266,7 +258,6 @@ public class Game {
         basementBottomLeft.setDir("right", new NormalExit(this, basementCollapse));
         basementBottomLeft.setDir("up", new LockedExit(this, hangar, null, hangarButton, null));
         basementBottomLeft.addItem(crowbar);
-
         
         basementBottomRight.setDir("left", new NormalExit(this, basementTopRight));
         basementBottomRight.setDir("right", new NormalExit(this, basementBottomLeft));
@@ -313,8 +304,7 @@ public class Game {
         floor2West.setDir("door", new NormalExit(this, floor2Bio));
         floor2West.setDir("back", new NormalExit(this, floor2SouthWest));
         
-        floor2Bio.setDir("back", new NormalExit(this, floor2West));    
-        ladder.setRoom(floor2Bio);
+        floor2Bio.setDir("back", new NormalExit(this, floor2West));  
         floor2Bio.addItem(ladder);
         
         floor2NorthWest.setDir("right", new NormalExit(this, floor2NorthEast));
@@ -343,6 +333,7 @@ public class Game {
         		+ "There is a console that looks like some sort of guidance system...");
         maproomF3.addItem(guidancesystem);
         elevatorFloor3.setDir("forward", new NormalExit(this, elevatorExitF3));
+        NeutronStar.setDir("warp", new NormalExit(this, elevatorFloor3));
         
         elevatorExitF3.setDir("forward", new NormalExit(this, hallway1F3));
         elevatorExitF3.setDir("back", new NormalExit(this, elevatorFloor3));
@@ -369,21 +360,22 @@ public class Game {
         blackhall2.setDir("right", new NormalExit(this, blackhall3));	
         blackhall2.setDir("left", new NormalExit(this, blackhall1));
         
-        blackhall3.setDir("one", new NormalExit(this, blackholeWarpdrive));	
-        blackhall3.setDir("two", new NormalExit(this, blackhall2));
+        blackhall3.setDir("not danger", new NormalExit(this, blackholeWarpdrive));
+        blackhall3.setDir("maybe not danger", new NormalExit(this, blackholeWarpdrive));	
+        blackhall3.setDir("danger", new NormalExit(this, blackhall2));
         
-        blackholeWarpdrive.setDir("forward", new NormalExit(this, Blackhole));
-        blackholeWarpdrive.setDir("backward", new LockedExit(this, Blackhole, null, null, null));
+        blackholeWarpdrive.setDir("hand out", new NormalExit(this, blackHoleEntrance));
+        blackholeWarpdrive.setDir("backward", new LockedExit(this, blackHoleEntrance, null, null, null));
         	//do I make there be no option to turn back??
         //blackholeWarpdrive.setDir("back", new NormalExit(this, blackhall3));
         
         //floor 4
-        	//INTERACTION WITH CAPTAIN AND ITEM (INTERACTION WITH OTHER EQUITMENT IN ROOM?)
+        	//INTERACTION WITH CAPTAIN AND ITEM (INTERACTION WITH OTHER EQUIPMENT IN ROOM?)
         Room commandCenter = new Room ("You see a large window looking into the vast depth of space. There is someone "
         		+ "on the ground in a white uniform bleeding with his hand over his heart.\n You look at the many consoles"
-        		+ " and equitment and assess you are in the command center.");
+        		+ " and equipment and assess you are in the command center.");
 
-        Chest captain = new Chest(keycard, gloves, "Captain", "You search the captain, his blood stains the gloves."
+        Chest captain = new Chest(null, keycard, "captain", "You search the captain, his blood stains the gloves."
         		+ "\nYou found a Keycard. Seems like it opens a room of some sort.");
         commandCenter.addInteractable(captain);
         
@@ -393,8 +385,8 @@ public class Game {
 
         
         //currentRoom = blackHoleEntrance;
-        currentRoom = hangar;
-
+        //currentRoom = hangar;
+        currentRoom = blackhall3;
         
         over = false;
     }
@@ -409,6 +401,10 @@ public class Game {
      */
     public void setCurrentRoom(Room currentRoom) { this.currentRoom = currentRoom; }
 
+    public Room finalRoom() {
+    	return maintenance;
+    }
+    
     /**
      * Indicate that the game is now over.
      */

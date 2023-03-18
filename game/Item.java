@@ -2,13 +2,15 @@ package game;
 
 public interface Item {
 	
-	public String name();
+	//interface for all items
 	
-	public void pickedUp();
+	public String name(); //returns printable name of item
 	
-	public boolean getPossession();
+	public void pickedUp(); //sets possession boolean to true when called
 	
-	public String description();
+	public boolean getPossession(); //returns possession state
+	
+	public String description(); //returns item description for proper grammar
 	
 }
 

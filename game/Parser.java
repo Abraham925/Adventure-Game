@@ -39,11 +39,11 @@ public class Parser {
     public Parser(Game game) {
     	this.game = game;
         map.put("look", new Look(game));
-        //map.put("ls", new Look(game));
+        //map.put("ls", new Look(game)); TEST COMMAND
         map.put("search", new Search(game));
         map.put("help", new Help(this));
         map.put("inventory", new Inventory(game.getInventory()));
-        //map.put("i", new Inventory(game.getInventory()));
+        //map.put("i", new Inventory(game.getInventory())); TEST COMMAND
         keyboard = new Scanner(System.in);
     }
     
@@ -72,11 +72,14 @@ public class Parser {
         	}
         }
         
-        //System.out.println("ITEMS SIZE: " + room.getItems().size());
-        
         //Checks for items in the room, adds pick up action for each item
         for(int i = 0; i<room.getItems().size(); i+=1) {
         	map.put("pick up " + room.getItems().get(i).name(), new PickUpItem(room.getItems().get(i)));
+        }
+        
+        if(room.equals(game.finalRoom()) && game.getInventory().allItemsAcquired()){
+        	System.out.println("\nYou realize you have all the parts you need. Repair the ship and get out of here.");
+        	map.put("repair ship", new FinishGame(game));
         }
         
         if(command.equals("")) {//game just started, shows room description

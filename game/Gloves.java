@@ -24,7 +24,6 @@ public class Gloves implements Item {
 	@Override
 	public void pickedUp() {
 		possession = true;
-
 	}
 
 	@Override

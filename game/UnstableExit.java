@@ -2,6 +2,8 @@ package game;
 
 public class UnstableExit implements Exit {
 	
+	//used for removing a connection between two rooms entirely after one use of the exit
+	
 	private Game game;
 	private Room room;
 	private String reaction;

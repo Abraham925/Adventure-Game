@@ -28,15 +28,23 @@ public class Room {
      * adds an item to the room
      * @param item The item that is being added
      */
-    public void addItem(Item item) {
+    public void addItem(Item item) { //add items to a room
     	items.add(item);
+    }
+    
+    /**
+     * remove an item from a room (unused currently)
+     * @param item The item being removed
+     */
+    public void removeItem(Item item) { 
+    	items.remove(item);
     }
     
     /**
      * adds an interactable to the room
      * @param inter The interactable that's being added to the room
      */
-    public void addInteractable(Interactable inter) {
+    public void addInteractable(Interactable inter) { 
     	interactables.add(inter);
     }
     

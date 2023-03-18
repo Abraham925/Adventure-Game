@@ -2,6 +2,8 @@ package game;
 
 public class Look implements Command {
 	
+	//prints the available locations to go to from current room
+	
 	private Game game;
 	
 	public Look(Game game){

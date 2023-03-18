@@ -2,6 +2,8 @@ package game;
 
 public class Hyperdrive implements Item{
 	
+	//One of three necessary parts to complete the game
+	
 	private boolean possession;
 	private String name;
 	private String desc;

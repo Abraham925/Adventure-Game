@@ -2,6 +2,8 @@ package game;
 
 public class Use implements Command {
 	
+	//completes the action of a given interactable
+	
 	private Interactable inter;
 	
 	public Use(Interactable inter) {

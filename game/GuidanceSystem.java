@@ -2,6 +2,8 @@ package game;
 
 public class GuidanceSystem implements Item {
 	
+	//One of three necessary parts to complete the game
+	
 	private boolean possession;
 	private String name;
 	private String desc;

@@ -2,13 +2,15 @@ package game;
 
 public class PropulsionSystem implements Item {
 	
+	//One of three necessary parts to complete the game
+	
 	private boolean possession;
 	private String name;
 	private String desc;
 	
 	public PropulsionSystem() {
 		desc = "a missing part: propulsion system";
-		name = "Proplusion System";
+		name = "Propulsion System";
 		possession = false;
 	}
 	

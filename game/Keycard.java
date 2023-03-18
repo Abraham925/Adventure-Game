@@ -2,6 +2,8 @@ package game;
 
 public class Keycard implements Item {
 	
+	//item needed to open the final room
+	
 	private boolean possession;
 	private String name;
 	private String desc;

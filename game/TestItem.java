@@ -2,6 +2,8 @@ package game;
 
 public class TestItem implements Item {
 	
+	//test item, not used during final gameplay
+	
 	private String name;
 	private String desc;
 	
