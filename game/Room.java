@@ -93,6 +93,10 @@ public class Room {
 		dir.put(direction, exit);
 	}
 	
+	public void removeDir(String direction) {
+		dir.remove(direction);
+	}
+	
     /**
      * Retrieve a description of this room (to the user).
      */

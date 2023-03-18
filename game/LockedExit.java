@@ -28,6 +28,7 @@ public class LockedExit implements Exit {
 			}
 		}else if(inter != null) {
 			if(inter.isUnlocked()) {
+				game.setCurrentRoom(two);
 			}else {
 				System.out.println("It looks like something is missing; it needs to fall into place...");
 			}
